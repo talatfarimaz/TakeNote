@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 import {Container } from 'reactstrap';
-import {Button} from "@material-ui/core";
+import AppNavbar from "./Components/AppNavbar";
+import {Button, Grid} from "@material-ui/core";
+import LeftMenu from "./Components/LeftMenu";
+import AppContent from "./Components/AppContent";
 
 class Home extends Component {
     render() {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
-                    <Button color="primary"><Link to="/clients">Clients</Link></Button>
-                </Container>
+                <AppContent/>
             </div>
         );
     }
