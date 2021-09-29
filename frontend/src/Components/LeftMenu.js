@@ -21,6 +21,8 @@ import DefaultTheme from "../Themes/DefaultTheme";
 import {Button} from "@material-ui/core";
 import {Container} from "reactstrap";
 import {Link} from "react-router-dom";
+import { connect } from 'react-redux'
+
 
 const drawerWidth = 240;
 
@@ -106,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LeftMenu(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -139,5 +141,5 @@ export default function LeftMenu(props) {
                     ))}
                 </List>
             </Drawer>
-    );
+);
 }

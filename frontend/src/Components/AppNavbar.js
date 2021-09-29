@@ -217,7 +217,6 @@ function AppNavbar(props) {
                     </div>
                 </Toolbar>
             </AppBar>
-            <Divider variant={"fullWidth"}/>
             {renderMobileMenu}
             {renderMenu}
         </div>
