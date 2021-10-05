@@ -109,17 +109,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LeftMenu(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
 
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-    const title = useSelector(state => state.app.title);
     const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
 
     return (
@@ -144,7 +134,6 @@ export default function LeftMenu(props) {
                         </ListItem>
                     ))}
                 </List>
-                <Typography>{title}</Typography>
             </Drawer>
 );
 }

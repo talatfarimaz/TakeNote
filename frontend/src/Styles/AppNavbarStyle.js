@@ -92,6 +92,14 @@ const AppNavbarStyle = makeStyles(theme => ({
     },
     appBarMain: {
         boxShadow: "unset"
+    },
+    languageButton: {
+        width: "59px",
+        height: "59px"
+    },
+    languageText: {
+        fontSize: "20px",
+        fontWeight: "bold"
     }
 }));
 

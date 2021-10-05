@@ -1,5 +1,4 @@
 import React from 'react';
-import {alpha, makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,10 +17,14 @@ import {useTranslation, withTranslation} from 'react-i18next';
 import i18n from '../i18n/i18n';
 import AppNavbarStyle from "../Styles/AppNavbarStyle";
 import logo from '../assets/images/takenote.png'
-import {Avatar, Button, CardActionArea, Divider, Hidden} from "@material-ui/core";
+import {Avatar, Hidden} from "@material-ui/core";
 import LanguagesEnum from "../enums/LanguagesEnum";
-import LeftMenu from "./LeftMenu";
 import {useDispatch, useSelector} from "react-redux";
+import TableChartIcon from '@material-ui/icons/TableChart';
+import SettingsIcon from '@material-ui/icons/Settings';
+import SyncIcon from '@material-ui/icons/Sync';
+import ViewStreamIcon from '@material-ui/icons/ViewStream';
+import TranslateIcon from '@material-ui/icons/Translate';
 
 
 function AppNavbar(props) {
@@ -31,6 +34,7 @@ function AppNavbar(props) {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [anchorElMenu, setAnchorElMenu] = React.useState(null);
     const [activeLanguage, setActiveLanguage] = React.useState(i18n.language);
+    const [listIcon, setListIcon] = React.useState(true);
 
     const changeLanguageSelection = (lng) => {
         i18n.changeLanguage(lng);
@@ -64,6 +68,21 @@ function AppNavbar(props) {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+
+    const HandleSetListIcon = () => {
+        setListIcon(false)
+    }
+    const HandleSetTableIcon = () => {
+        setListIcon(true)
+    }
+
+    const HandleGetTableOrListIcon = () => {
+        if (listIcon) {
+            return <ViewStreamIcon color={"secondary"} onClick={HandleSetListIcon} fontSize={"large"}/>;
+        } else {
+            return <TableChartIcon color="secondary" onClick={HandleSetTableIcon} fontSize={"large"}/>;
+        }
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -174,20 +193,17 @@ function AppNavbar(props) {
                     </div>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit"
-                                    onClick={() => changeLanguageSelection('tr')}>
-                            <Badge badgeContent={4} color="secondary">
-                                <MailIcon/>
-                            </Badge>
+                        <IconButton color="inherit">
+                            <SyncIcon color="action" fontSize={"large"}/>
                         </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit"
-                                    onClick={() => changeLanguageSelection('en')}>
-                            <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon/>
-                            </Badge>
+                        <IconButton color="inherit">
+                            {HandleGetTableOrListIcon()}
                         </IconButton>
-                        <IconButton color="primary" onClick={handleClickLanguage}>
-                            <Typography>{activeLanguage}</Typography>
+                        <IconButton color="inherit">
+                            <SettingsIcon color="primary" fontSize={"large"}/>
+                        </IconButton>
+                        <IconButton color="primary" onClick={handleClickLanguage} className={classes.languageButton}>
+                            <Typography className={classes.languageText}>{activeLanguage}</Typography>
                         </IconButton>
                         <Menu
                             id="simple-menu"
