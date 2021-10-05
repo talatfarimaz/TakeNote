@@ -21,6 +21,7 @@ import logo from '../assets/images/takenote.png'
 import {Avatar, Button, CardActionArea, Divider, Hidden} from "@material-ui/core";
 import LanguagesEnum from "../enums/LanguagesEnum";
 import LeftMenu from "./LeftMenu";
+import {useDispatch, useSelector} from "react-redux";
 
 
 function AppNavbar(props) {
@@ -121,6 +122,9 @@ function AppNavbar(props) {
         </Menu>
     );
 
+    const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
+    const dispatch = useDispatch();
+
     return (
         <div className={classes.grow}>
             <AppBar position="static" color={"default"} className={classes.appBarMain}>
@@ -129,7 +133,13 @@ function AppNavbar(props) {
                         edge="start"
                         className={classes.menuButton}
                         aria-label="open drawer"
-                        onClick={()=>{}}
+                        onClick={() => {
+                            dispatch({
+                                type: "LEFT_MENU_OPEN_STATE",
+                                payload: !leftMenuOpenState
+                            });
+                        }
+                        }
                     >
                         <MenuIcon/>
                     </IconButton>

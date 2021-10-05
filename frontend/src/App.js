@@ -6,11 +6,14 @@ import ClientList from './ClientList';
 import ClientEdit from "./ClientEdit";
 import {ThemeProvider} from '@material-ui/core/styles';
 import DefaultTheme from "./Themes/DefaultTheme";
+import {Provider} from "react-redux";
+import store from "./state/store";
 
 class App extends Component {
     render() {
         const theme = DefaultTheme;
         return (
+            <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <Router>
                     <Switch>
@@ -20,6 +23,7 @@ class App extends Component {
                     </Switch>
                 </Router>
             </ThemeProvider>
+            </Provider>
         )
     }
 }

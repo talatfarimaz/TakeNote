@@ -21,7 +21,8 @@ import DefaultTheme from "../Themes/DefaultTheme";
 import {Button} from "@material-ui/core";
 import {Container} from "reactstrap";
 import {Link} from "react-router-dom";
-import { connect } from 'react-redux'
+import {connect, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 const drawerWidth = 240;
@@ -110,6 +111,7 @@ export default function LeftMenu(props) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
 
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -117,18 +119,20 @@ export default function LeftMenu(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    const title = useSelector(state => state.app.title);
+    const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
 
     return (
             <Drawer
                 variant="permanent"
                 className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
+                    [classes.drawerOpen]: leftMenuOpenState,
+                    [classes.drawerClose]: !leftMenuOpenState,
                 })}
                 classes={{
                     paper: clsx({
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open,
+                        [classes.drawerOpen]: leftMenuOpenState,
+                        [classes.drawerClose]: !leftMenuOpenState,
                     }),
                 }}
             >
@@ -140,6 +144,7 @@ export default function LeftMenu(props) {
                         </ListItem>
                     ))}
                 </List>
+                <Typography>{title}</Typography>
             </Drawer>
 );
 }
