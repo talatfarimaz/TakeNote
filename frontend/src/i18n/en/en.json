@@ -1,5 +1,9 @@
 {
   "welcome": "Welcome",
   "search": "Search",
-  "searchShort": "Search"
+  "searchShort": "Search",
+  "Notes": "Notes",
+  "Reminders": "Reminders",
+  "Archive": "Archieves",
+  "Rubbish": "Deleted Notes"
 }

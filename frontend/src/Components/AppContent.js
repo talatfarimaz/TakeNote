@@ -1,15 +1,14 @@
 import React from "react";
-import {Grid} from "@material-ui/core";
 import LeftMenu from "./LeftMenu";
+import AppContentStyle from "../Styles/AppContentStyle";
+import AppDetailedContent from "./AppDetailedContent";
 
 export default function AppContent(props) {
+    const classes = AppContentStyle();
     return (
-        <Grid container>
-            <Grid item xs={1}>
-                <LeftMenu/>
-            </Grid>
-            <Grid item xs={11}>
-            </Grid>
-        </Grid>
+        <div className={classes.root}>
+            <LeftMenu/>
+            <AppDetailedContent/>
+        </div>
     );
 }

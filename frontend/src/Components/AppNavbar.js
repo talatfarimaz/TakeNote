@@ -24,7 +24,6 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SyncIcon from '@material-ui/icons/Sync';
 import ViewStreamIcon from '@material-ui/icons/ViewStream';
-import TranslateIcon from '@material-ui/icons/Translate';
 
 
 function AppNavbar(props) {

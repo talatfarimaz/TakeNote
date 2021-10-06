@@ -1,5 +1,9 @@
 {
   "welcome": "Hoşgeldin",
   "search": "Arama yapın",
-  "searchShort": "Ara"
+  "searchShort": "Ara",
+  "Notes": "Notlar",
+  "Reminders": "Hatırlatmalar",
+  "Archive": "Arşivler",
+  "Rubbish": "Silinen Notlar"
 }
