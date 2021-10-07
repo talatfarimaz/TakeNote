@@ -8,6 +8,9 @@ const AppDetailedContentStyle = makeStyles(theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        [theme.breakpoints.only('xs')]: {
+            marginLeft: "40px"
+        }
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -15,6 +18,9 @@ const AppDetailedContentStyle = makeStyles(theme => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
         marginLeft: 0,
+        [theme.breakpoints.only('xs')]: {
+            marginLeft: "40px",
+        }
     },
     drawerHeader: {
         display: 'flex',

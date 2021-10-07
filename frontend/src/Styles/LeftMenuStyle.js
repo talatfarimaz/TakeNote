@@ -31,6 +31,9 @@ const LeftMenuStyle = makeStyles(theme => ({
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
+        [theme.breakpoints.only('xs')]: {
+            boxShadow: "1px 10px 8px " + DefaultTheme.palette.default.contrastDark
+        }
 
     },
     drawerOpen: {
@@ -64,7 +67,7 @@ const LeftMenuStyle = makeStyles(theme => ({
             top: "64px"
         },
         [theme.breakpoints.only('xs')]: {
-            top: "57px"
+            top: "56px"
         },
     },
     toolbar: {
@@ -72,7 +75,6 @@ const LeftMenuStyle = makeStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     },
     content: {
@@ -82,6 +84,11 @@ const LeftMenuStyle = makeStyles(theme => ({
     listItemIcon: {
         marginBlockEnd: "10px",
         borderRadius: "0px 25px 25px 0px",
+    },
+    responsiveDrawer: {
+        [theme.breakpoints.only('xs')]: {
+            boxShadow: "1px 10px 8px " + DefaultTheme.palette.default.contrastDark
+        }
     }
 }))
 

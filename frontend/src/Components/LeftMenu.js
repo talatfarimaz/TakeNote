@@ -21,10 +21,12 @@ export default function LeftMenu(props) {
     return (
         <Drawer
             variant="permanent"
-            className={clsx(classes.drawer, {
-                [classes.drawerOpen]: leftMenuOpenState,
-                [classes.drawerClose]: !leftMenuOpenState,
-            })}
+            className={clsx(classes.drawer,
+                {
+                    [classes.drawerOpen]: leftMenuOpenState,
+                    [classes.drawerClose]: !leftMenuOpenState,
+                }
+            )}
             classes={{
                 paper: clsx({
                     [classes.drawerOpen]: leftMenuOpenState,
