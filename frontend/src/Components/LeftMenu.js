@@ -15,23 +15,30 @@ import LeftMenuStyle from "../Styles/LeftMenuStyle";
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import ClassIcon from '@material-ui/icons/Class';
 import {AddBookModal} from "../Modals/AddBookModal";
+import {AddCategoryModal} from "../Modals/AddCategoryModal";
 
 export default function LeftMenu(props) {
     const classes = LeftMenuStyle();
     const {t} = useTranslation();
     const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
-    const childRef = useRef();
+    const childRefBook = useRef();
+    const childRefCategory = useRef();
 
     const handleAddBook = (event) => {
-        childRef.current.handleClickOpenWithRef();
+        childRefBook.current.handleClickOpenWithRef();
+    };
+    const handleAddCategory = (event) => {
+        childRefCategory.current.handleClickOpenWithRef();
     };
     return (
         <Drawer
             variant="permanent"
-            className={clsx(classes.drawer, {
-                [classes.drawerOpen]: leftMenuOpenState,
-                [classes.drawerClose]: !leftMenuOpenState,
-            })}
+            className={clsx(classes.drawer,
+                {
+                    [classes.drawerOpen]: leftMenuOpenState,
+                    [classes.drawerClose]: !leftMenuOpenState,
+                }
+            )}
             classes={{
                 paper: clsx({
                     [classes.drawerOpen]: leftMenuOpenState,
@@ -58,7 +65,9 @@ export default function LeftMenu(props) {
                     <ListItemIcon><CollectionsBookmarkIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
                     <ListItemText primary={t('AddBook')}/>
                 </ListItem>
-                <ListItem button key={t('AddCategory')} className={classes.listItemIcon}>
+                <ListItem button key={t('AddCategory')} onClick={() => {
+                    handleAddCategory()
+                }} className={classes.listItemIcon}>
                     <ListItemIcon><ClassIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
                     <ListItemText primary={t('AddCategory')}/>
                 </ListItem>
@@ -67,7 +76,8 @@ export default function LeftMenu(props) {
                     <ListItemText primary={t('Rubbish')}/>
                 </ListItem>
             </List>
-            <AddBookModal ref={childRef}/>
+            <AddBookModal ref={childRefBook}/>
+            <AddCategoryModal ref={childRefCategory}/>
         </Drawer>
     );
 }
