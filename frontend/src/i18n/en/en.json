@@ -4,6 +4,14 @@
   "searchShort": "Search",
   "Notes": "Notes",
   "Reminders": "Reminders",
-  "Archive": "Archieves",
-  "Rubbish": "Deleted Notes"
+  "Archive": "Archives",
+  "Rubbish": "Deleted Notes",
+  "AddCategory": "Add Category",
+  "AddBook": "Add Book",
+  "Save": "Save",
+  "Cancel": "Cancel",
+  "BookName": "Book Name",
+  "CategoryName": "Category Name",
+  "Book": "Book",
+  "Category": "Category"
 }

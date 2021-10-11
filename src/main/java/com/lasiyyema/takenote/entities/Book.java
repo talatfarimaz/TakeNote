@@ -3,15 +3,18 @@ package com.lasiyyema.takenote.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "book", uniqueConstraints = {@UniqueConstraint(columnNames = {"Id"})})
 @Data
-public class Book {
+public class Book implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "BookName", length = 100, nullable = false)

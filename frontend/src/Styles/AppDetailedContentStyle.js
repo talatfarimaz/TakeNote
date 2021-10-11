@@ -8,13 +8,22 @@ const AppDetailedContentStyle = makeStyles(theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        [theme.breakpoints.only('xs')]: {
+            marginLeft: "40px",
+            marginTop: "57px"
+        },
+        [theme.breakpoints.up('sm')]: {
+            marginTop: "64px"
+        },
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
-        marginLeft: 0,
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: 0,
+        },
     },
     drawerHeader: {
         display: 'flex',
@@ -23,6 +32,11 @@ const AppDetailedContentStyle = makeStyles(theme => ({
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
     },
+    mainBlur: {
+        [theme.breakpoints.only('xs')]: {
+            filter: "blur(5px)"
+        },
+    }
 }))
 
 export default AppDetailedContentStyle;

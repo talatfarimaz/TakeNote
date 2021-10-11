@@ -5,5 +5,13 @@
   "Notes": "Notlar",
   "Reminders": "Hatırlatmalar",
   "Archive": "Arşivler",
-  "Rubbish": "Silinen Notlar"
+  "Rubbish": "Silinen Notlar",
+  "AddCategory": "Kategori Ekle",
+  "AddBook": "Kitap Ekle",
+  "Save": "Kaydet",
+  "Cancel": "İptal",
+  "BookName": "Kitap İsmi",
+  "CategoryName": "Kategori İsmi",
+  "Book": "Kitap",
+  "Category": "Kategory"
 }

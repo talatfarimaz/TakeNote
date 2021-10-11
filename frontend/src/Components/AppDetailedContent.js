@@ -11,7 +11,7 @@ export default function AppDetailedContent(props) {
         <main
             className={clsx(classes.content, {
                 [classes.contentShift]: leftMenuOpenState,
-            })}
+            }, leftMenuOpenState && classes.mainBlur)}
         >
             <Typography paragraph>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
