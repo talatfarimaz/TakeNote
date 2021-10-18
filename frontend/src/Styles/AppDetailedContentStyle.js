@@ -36,6 +36,20 @@ const AppDetailedContentStyle = makeStyles(theme => ({
         [theme.breakpoints.only('xs')]: {
             filter: "blur(5px)"
         },
+    },
+    stickyPadding: {
+        [theme.breakpoints.up('lg')]: {
+            margin: "40px"
+        },
+        [theme.breakpoints.only('md')]: {
+            margin: "30px"
+        },
+        [theme.breakpoints.only('sm')]: {
+            margin: "20px"
+        },
+        [theme.breakpoints.only('xs')]: {
+            margin: "10px"
+        },
     }
 }))
 
