@@ -15,7 +15,7 @@ export default function StickyNote(props) {
     return (
         <div className={classes.stickyPadding}>
             <CardActionArea>
-                <Grid container className={classes.contentGrid}>
+                <Grid container className={classes.contentGrid} spacing={2}>
                     <Grid item xs={12}>
                         <Typography>DenemeDeneme</Typography>
                         <Typography>Deneme</Typography>
@@ -60,7 +60,7 @@ export default function StickyNote(props) {
                                     onClick={event => {
                                         event.stopPropagation();
                                         event.preventDefault();
-                                        alert("Button clicked");
+                                           alert("Button clicked");
                                     }}
                                 >
                                     <ImageIcon fontSize={"small"}/>
