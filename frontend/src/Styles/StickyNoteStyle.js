@@ -12,18 +12,24 @@ const StickyNoteStyle = makeStyles(theme => ({
         borderRadius: "10px",
     },
     stickyPadding: {
+        border: "0.1em solid "+ DefaultTheme.palette.dark.contrastDark,
+        borderRadius: "10px",
         [theme.breakpoints.up('lg')]: {
-            padding: "40px"
+            margin: "15px"
         },
         [theme.breakpoints.only('md')]: {
-            padding: "30px"
+            margin: "12px"
         },
         [theme.breakpoints.only('sm')]: {
-            padding: "20px"
+            margin: "9px"
         },
         [theme.breakpoints.only('xs')]: {
-            padding: "10px"
+            margin: "6px"
         },
+    },
+    contentGrid: {
+        textAlign: "center",
+        padding: "5px"
     }
 }))
 

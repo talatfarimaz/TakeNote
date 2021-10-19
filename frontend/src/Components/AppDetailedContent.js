@@ -47,7 +47,7 @@ export default function AppDetailedContent(props) {
             <ResponsiveMasonry
                 columnsCountBreakPoints={{250: 1,500: 2,750: 3, 1000: 4,1250: 5, 1500: 6, 1750: 7}}
             >
-                <Masonry className={classes.stickyPadding}>
+                <Masonry>
                     {[0,1,2,3,4,5,6,7,8,5,4,4,3].map((item)=>{
                         return (
                             <StickyNote note={strings[Math.floor(Math.random() * strings.length)]}/>

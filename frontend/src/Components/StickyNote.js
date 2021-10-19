@@ -8,8 +8,9 @@ export default function StickyNote(props) {
     const classes = StickyNoteStyle();
 
     return (
-        <CardActionArea className={classes.stickyCardArea}>
-            <Grid container className={classes.stickyPadding}>
+        <div className={classes.stickyPadding}>
+        <CardActionArea >
+            <Grid container className={classes.contentGrid}>
                 <Grid item xs={12}>
                     <Typography>DenemeDeneme</Typography>
                     <Typography>Deneme</Typography>
@@ -17,6 +18,7 @@ export default function StickyNote(props) {
                     <Typography>Deneme</Typography>
                     <Typography>DenDenemeeme</Typography>
                     <Typography>DenDenemeeme</Typography>
+                    <Typography>{props.note}</Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Grid container spacing={1}>
@@ -97,6 +99,7 @@ export default function StickyNote(props) {
                     </Grid>
             </Grid>
         </CardActionArea>
+        </div>
     );
 
 }
