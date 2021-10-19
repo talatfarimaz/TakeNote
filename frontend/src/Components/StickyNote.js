@@ -3,6 +3,12 @@ import React from "react";
 import StickyNoteStyle from "../Styles/StickyNoteStyle";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
+import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
+import FormatPaintIcon from '@material-ui/icons/FormatPaint';
+import ImageIcon from '@material-ui/icons/Image';
+import ArchiveIcon from "@material-ui/icons/Archive";
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 export default function StickyNote(props) {
     const classes = StickyNoteStyle();
@@ -29,8 +35,13 @@ export default function StickyNote(props) {
                                 aria-haspopup="true"
                                 color="inherit"
                                 size={"small"}
+                                onClick={event => {
+                                    event.stopPropagation();
+                                    event.preventDefault();
+                                    console.log("Button clicked");
+                                }}
                             >
-                                <AccountCircle fontSize={"small"}/>
+                                <AccessAlarmIcon fontSize={"small"}/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={2} className={classes.iconButtons}>
@@ -42,7 +53,7 @@ export default function StickyNote(props) {
                                 size={"small"}
 
                             >
-                                <AccountCircle fontSize={"small"}/>
+                                <ArchiveIcon fontSize={"small"}/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={2} className={classes.iconButtons}>
@@ -54,7 +65,7 @@ export default function StickyNote(props) {
                                 size={"small"}
 
                             >
-                                <AccountCircle fontSize={"small"}/>
+                                <ImageIcon fontSize={"small"}/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={2} className={classes.iconButtons}>
@@ -66,7 +77,7 @@ export default function StickyNote(props) {
                                 size={"small"}
 
                             >
-                                <AccountCircle fontSize={"small"}/>
+                                <FormatPaintIcon fontSize={"small"}/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={2} className={classes.iconButtons}>
@@ -78,7 +89,7 @@ export default function StickyNote(props) {
                                 size={"small"}
 
                             >
-                                <AccountCircle fontSize={"small"}/>
+                                <PersonAddIcon fontSize={"small"}/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={2} className={classes.iconButtons}>
@@ -90,7 +101,7 @@ export default function StickyNote(props) {
                                 size={"small"}
 
                             >
-                                <AccountCircle fontSize={"small"}/>
+                                <MoreVertIcon fontSize={"small"}/>
                             </IconButton>
                         </Grid>
 
