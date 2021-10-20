@@ -13,5 +13,12 @@
   "BookName": "Kitap İsmi",
   "CategoryName": "Kategori İsmi",
   "Book": "Kitap",
-  "Category": "Kategory"
+  "Category": "Kategory",
+  "SelectColor": "Renk Seçimi",
+  "Reminder": "Hatırlat",
+  "ArchiveNote": "Aşivle",
+  "AddImage": "Resim Ekle",
+  "ColorSelect": "Renk Değiştir",
+  "CommonPerson": "Ortak Kullanıcı",
+  "Options": "Seçenekler"
 }

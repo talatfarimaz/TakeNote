@@ -12,21 +12,7 @@ import AddBookModalStyle from "../Styles/AddBookModalStyle";
 import {useTranslation} from "react-i18next";
 import {FormControl, TextField} from "@material-ui/core";
 import axios from "axios";
-
-const DialogTitle = ((props) => {
-    const {children, onClose, ...other} = props;
-    const classes = AddBookModalStyle();
-    return (
-        <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            <Typography variant="h6">{children}</Typography>
-            {onClose ? (
-                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon/>
-                </IconButton>
-            ) : null}
-        </MuiDialogTitle>
-    );
-});
+import DialogTitle from "./DialogTitle";
 
 const DialogContent = withStyles((theme) => ({
     root: {

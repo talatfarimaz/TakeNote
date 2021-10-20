@@ -13,5 +13,12 @@
   "BookName": "Book Name",
   "CategoryName": "Category Name",
   "Book": "Book",
-  "Category": "Category"
+  "Category": "Category",
+  "SelectColor": "Color Selection",
+  "Reminder": "Remind",
+  "ArchiveNote": "Archive",
+  "AddImage": "Add Image",
+  "ColorSelect": "Change Color",
+  "CommonPerson": "Common User",
+  "Options": "Options"
 }
