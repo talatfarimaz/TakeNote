@@ -1,4 +1,5 @@
 import {createTheme} from '@material-ui/core/styles';
+
 const DefaultTheme = createTheme({
     palette: {
         primary: {
@@ -88,7 +89,26 @@ const DefaultTheme = createTheme({
         },
         action: {
             main: '#35baf6',
+        },
+        yellow: {
+            main: '#ffef62'
+        },
+        orange: {
+            main: "#ffac33"
+        },
+        green: {
+            main: "#6fbf73"
+        },
+        teal: {
+            main: "#33ab9f"
+        },
+        indigo: {
+            main: "#6573c3"
+        },
+        purple: {
+            main: "#8561c5"
         }
+
     },
     typography: {
         fontFamily: ['"Montserrat Alternates"', 'Open Sans'].join(','),

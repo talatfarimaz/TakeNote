@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import {alpha, makeStyles} from "@material-ui/core/styles";
 import DefaultTheme from "../Themes/DefaultTheme";
 
 const StickyNoteStyle = makeStyles(theme => ({
@@ -7,13 +7,7 @@ const StickyNoteStyle = makeStyles(theme => ({
         alignItems: "center",
         justifyContent: "center"
     },
-    stickyCardArea: {
-        border: "0.1em solid "+ DefaultTheme.palette.dark.contrastDark,
-        borderRadius: "10px",
-    },
     stickyPadding: {
-        border: "0.1em solid "+ DefaultTheme.palette.dark.contrastDark,
-        borderRadius: "10px",
         [theme.breakpoints.up('lg')]: {
             margin: "15px"
         },
@@ -30,7 +24,13 @@ const StickyNoteStyle = makeStyles(theme => ({
     contentGrid: {
         textAlign: "center",
         padding: "5px"
-    }
+    },
+    noteStyle: {
+        fontSize: "14px"
+    },
+    pinButton: {
+        textAlign: "right",
+    },
 }))
 
 

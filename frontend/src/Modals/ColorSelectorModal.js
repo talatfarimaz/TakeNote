@@ -2,18 +2,17 @@ import React, {forwardRef, useImperativeHandle} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import AddBookModalStyle from "../Styles/AddBookModalStyle";
 import {useTranslation} from "react-i18next";
-import {DialogTitle, FormControl, TextField} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import axios from "axios";
-
-
+import DialogTitle from "./DialogTitle";
+import ColorSelectorModalStyle from "../Styles/ColorSelectorModalStyle";
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import DefaultTheme from "../Themes/DefaultTheme";
 
 const DialogContent = withStyles((theme) => ({
     root: {
@@ -28,7 +27,15 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-export const AddBookModal = forwardRef((props, ref) => {
+const ColorList =
+    [DefaultTheme.palette.primary.light, DefaultTheme.palette.light.main,
+        DefaultTheme.palette.secondary.main, DefaultTheme.palette.primary.light,
+        DefaultTheme.palette.link.main, DefaultTheme.palette.purple.main,
+        DefaultTheme.palette.success.contrastText, DefaultTheme.palette.indigo.main,
+        DefaultTheme.palette.teal.main, DefaultTheme.palette.green.main,
+        DefaultTheme.palette.orange.main, DefaultTheme.palette.yellow.main,]
+
+export const ColorSelectorModal = forwardRef((props, ref) => {
     useImperativeHandle(
         ref,
         () => ({
@@ -38,9 +45,8 @@ export const AddBookModal = forwardRef((props, ref) => {
         }),
     )
     const [open, setOpen] = React.useState(false);
-    const [bookName, setBookName] = React.useState(null);
     const {t} = useTranslation();
-    const classes = AddBookModalStyle();
+    const classes = ColorSelectorModalStyle();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -48,12 +54,11 @@ export const AddBookModal = forwardRef((props, ref) => {
 
     const handleClose = () => {
         setOpen(false);
-        setBookName(null);
     };
 
     const handleSaveBook = () => {
         axios.post('/books', {
-            bookName: bookName
+            bookName: open
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {
@@ -61,27 +66,36 @@ export const AddBookModal = forwardRef((props, ref) => {
         });
     }
 
-    const handleChange = (event) => {
-        setBookName(event.target.value);
+    const handleGetColors = () => {
+        return (
+            ColorList.map((color) =>
+                <Grid item xs={2} className={classes.colorGrid}>
+                    <IconButton
+                        color="inherit"
+                        size={"medium"}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            event.preventDefault();
+                        }}
+                    >
+                        <FiberManualRecordIcon style={{color: color}} className={classes.colorSize}/>
+                    </IconButton>
+                </Grid>
+            )
+        )
     };
     return (
-        <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" maxWidth={"sm"} fullWidth={true}
+        <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" fullWidth={false}
                 open={open}>
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                {t('AddBook')}
+                {t('SelectColor')}
             </DialogTitle>
             <DialogContent dividers>
-                <FormControl variant="outlined" className={classes.addBookArea}>
-                    <TextField type={"text"} value={bookName} id="outlined-basic" label={t('BookName')}
-                               variant="outlined" onChange={handleChange}/>
-                </FormControl>
+                <Grid container>
+                    {handleGetColors()}
+                </Grid>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={handleSaveBook} color="primary" variant={"contained"}>
-                    <Typography>
-                        {t('Save')}
-                    </Typography>
-                </Button>
                 <Button autoFocus onClick={handleClose} color="primary" variant={"contained"}>
                     <Typography>
                         {t('Cancel')}
