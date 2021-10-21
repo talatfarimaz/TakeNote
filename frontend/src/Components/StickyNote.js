@@ -11,17 +11,21 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import GpsFixedSharpIcon from '@material-ui/icons/GpsFixedSharp';
 import {ColorSelectorModal} from "../Modals/ColorSelectorModal";
 import {useTranslation} from "react-i18next";
+import {NoteDetailModal} from "../Modals/NoteDetailModal";
 
 export default function StickyNote(props) {
     const classes = StickyNoteStyle();
     const childRef = useRef();
+    const {t} = useTranslation();
     const handleOpenColorSelector = (event) => {
         childRef.current.handleClickOpenWithRef();
     };
-    const {t} = useTranslation();
+    const handleClickOpenNoteDetailModal = () => {
+        childRef.current.handleClickOpenWithRef();
+    }
     return (
-        <Paper className={classes.stickyPadding}>
-            <CardActionArea>
+        <Paper className={classes.stickyPadding} style={{background: props.color}}>
+            <CardActionArea onClick={()=>{handleClickOpenNoteDetailModal()}}>
                 <Grid container className={classes.contentGrid} spacing={2}>
                     <Grid item xs={12} className={classes.pinButton}>
                         <Tooltip title={t('Pin')}>
@@ -138,6 +142,7 @@ export default function StickyNote(props) {
                 </Grid>
             </CardActionArea>
             <ColorSelectorModal ref={childRef}/>
+            <NoteDetailModal ref={childRef}/>
         </Paper>
     );
 

@@ -28,12 +28,12 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 const ColorList =
-    [DefaultTheme.palette.primary.light, DefaultTheme.palette.light.main,
-        DefaultTheme.palette.secondary.main, DefaultTheme.palette.primary.light,
-        DefaultTheme.palette.link.main, DefaultTheme.palette.purple.main,
+    [DefaultTheme.palette.primary.mainAlternative, DefaultTheme.palette.dark.mainAlternative,
+        DefaultTheme.palette.secondary.mainAlternative, DefaultTheme.palette.primary.light,
+        DefaultTheme.palette.link.light, DefaultTheme.palette.purple.main,
         DefaultTheme.palette.success.contrastText, DefaultTheme.palette.indigo.main,
         DefaultTheme.palette.teal.main, DefaultTheme.palette.green.main,
-        DefaultTheme.palette.orange.main, DefaultTheme.palette.yellow.main,]
+        DefaultTheme.palette.orange.main, DefaultTheme.palette.yellow.main]
 
 export const ColorSelectorModal = forwardRef((props, ref) => {
     useImperativeHandle(
