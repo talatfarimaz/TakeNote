@@ -20,6 +20,34 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
         height: 28,
         margin: 4,
     },
+    iconButtons: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    contentGrid: {
+        textAlign: "center",
+        padding: "5px"
+    },
+    noteStyle: {
+        fontSize: "14px"
+    },
+    pinButton: {
+        textAlign: "right",
+    },
+    textAreaStyle: {
+        width: "100%"
+    },
+    cancelButton: {
+        textAlign: "right"
+    },
+    cancelButtonText: {
+        fontWeight: "bold",
+        fontSize: "13px"
+    },
+    detailedNoteArea: {
+        marginBlockEnd: "15px"
+    }
 }))
 
 
