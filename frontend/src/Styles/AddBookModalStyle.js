@@ -1,4 +1,5 @@
 import {makeStyles} from "@material-ui/core/styles";
+import DefaultTheme from "../Themes/DefaultTheme";
 
 const AddBookModalStyle = makeStyles((theme) => ({
     root: {
@@ -9,10 +10,12 @@ const AddBookModalStyle = makeStyles((theme) => ({
         position: 'absolute',
         right: theme.spacing(1),
         top: theme.spacing(1),
-        color: theme.palette.grey[500],
     },
     addBookArea: {
         width: "100%"
+    },
+    closeIcon: {
+        color: DefaultTheme.palette.dark.alternative
     }
 }));
 

@@ -13,7 +13,7 @@ export default function  DialogTitle (props) {
             <Typography variant="h5">{children}</Typography>
             {onClose ? (
                 <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon/>
+                    <CloseIcon className={classes.closeIcon}/>
                 </IconButton>
             ) : null}
         </MuiDialogTitle>

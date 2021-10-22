@@ -21,7 +21,7 @@ export default function StickyNote(props) {
         childRef.current.handleClickOpenWithRef();
     };
     const handleClickOpenNoteDetailModal = () => {
-        childRef.current.handleClickOpenWithRef();
+        childRef.current.handleClickOpenWithRef(props.note, props.color);
     }
     return (
         <Paper className={classes.stickyPadding} style={{background: props.color}}>
