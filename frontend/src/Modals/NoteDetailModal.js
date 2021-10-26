@@ -291,7 +291,7 @@ export const NoteDetailModal = forwardRef((props, ref) => {
                     </Typography>
                 </Button>
             </DialogActions>
-            <ColorSelectorModal ref={childRef}/>
+            <ColorSelectorModal ref={childRef} setColor={setColor}/>
         </Dialog>
     );
 })

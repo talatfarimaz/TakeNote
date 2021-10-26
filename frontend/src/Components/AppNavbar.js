@@ -69,10 +69,18 @@ function AppNavbar(props) {
     };
 
     const HandleSetListIcon = () => {
-        setListIcon(false)
+        setListIcon(false);
+        dispatch({
+            type: "NOTES_LIST_PREVIEW",
+            payload: true
+        });
     }
     const HandleSetTableIcon = () => {
         setListIcon(true)
+        dispatch({
+            type: "NOTES_LIST_PREVIEW",
+            payload: false
+        });
     }
 
     const HandleGetTableOrListIcon = () => {

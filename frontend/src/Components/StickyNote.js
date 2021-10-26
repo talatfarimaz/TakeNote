@@ -15,17 +15,20 @@ import {NoteDetailModal} from "../Modals/NoteDetailModal";
 
 export default function StickyNote(props) {
     const classes = StickyNoteStyle();
-    const childRef = useRef();
+    const childColorRef = useRef();
+    const childNoteRef = useRef();
     const {t} = useTranslation();
     const handleOpenColorSelector = (event) => {
-        childRef.current.handleClickOpenWithRef();
+        childColorRef.current.handleClickOpenWithRef();
     };
     const handleClickOpenNoteDetailModal = () => {
-        childRef.current.handleClickOpenWithRef(props.note, props.color);
+        childNoteRef.current.handleClickOpenWithRef(props.note, props.color);
     }
     return (
         <Paper className={classes.stickyPadding} style={{background: props.color}}>
-            <CardActionArea onClick={()=>{handleClickOpenNoteDetailModal()}}>
+            <CardActionArea onClick={() => {
+                handleClickOpenNoteDetailModal()
+            }}>
                 <Grid container className={classes.contentGrid} spacing={2}>
                     <Grid item xs={12} className={classes.pinButton}>
                         <Tooltip title={t('Pin')}>
@@ -141,8 +144,8 @@ export default function StickyNote(props) {
                     </Grid>
                 </Grid>
             </CardActionArea>
-            <ColorSelectorModal ref={childRef}/>
-            <NoteDetailModal ref={childRef}/>
+            <ColorSelectorModal ref={childColorRef}/>
+            <NoteDetailModal ref={childNoteRef}/>
         </Paper>
     );
 
