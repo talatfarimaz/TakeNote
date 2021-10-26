@@ -47,6 +47,12 @@ const NoteDetailModalStyle = makeStyles(theme => ({
     },
     detailedNoteArea: {
         marginBlockEnd: "15px"
+    },
+    paperFullWidth: {
+        width: "100%"
+    },
+    paperFullWidthMargin: {
+        margin: "unset"
     }
 }))
 

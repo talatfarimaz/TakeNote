@@ -16,6 +16,12 @@ const AddBookModalStyle = makeStyles((theme) => ({
     },
     closeIcon: {
         color: DefaultTheme.palette.dark.alternative
+    },
+    paperFullWidth: {
+        width: "100%"
+    },
+    paperFullWidthMargin: {
+        margin: "unset"
     }
 }));
 

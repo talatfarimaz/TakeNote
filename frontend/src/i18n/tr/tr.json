@@ -22,5 +22,7 @@
   "CommonPerson": "Ortak Kullanıcı",
   "Options": "Seçenekler",
   "Pin": "Sabitle",
-  "TakeNote": "Not Alın..."
+  "TakeNote": "Not Alın...",
+  "SelectBook": "Kitap Seçiniz",
+  "SelectCategory": "Kategori Seçiniz"
 }

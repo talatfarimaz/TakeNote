@@ -22,5 +22,7 @@
   "CommonPerson": "Common User",
   "Options": "Options",
   "Pin": "Pin",
-  "TakeNote": "Take Note..."
+  "TakeNote": "Take Note...",
+  "SelectBook": "Select Book",
+  "SelectCategory": "Select Category"
 }

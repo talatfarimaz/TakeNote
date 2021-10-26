@@ -47,6 +47,16 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
     },
     detailedNoteArea: {
         marginBlockEnd: "15px"
+    },
+    noteArea: {
+        marginLeft: "20px",
+        marginRight: "20px",
+        marginTop: "20px"
+    },
+    selectArea: {
+        marginLeft: "20px",
+        marginRight: "20px",
+        marginTop: "20px"
     }
 }))
 

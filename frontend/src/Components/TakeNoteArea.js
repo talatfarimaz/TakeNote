@@ -151,7 +151,7 @@ export default function TakeNoteArea(props) {
                 <ClickAwayListener onClickAway={() => {
                     setOpenDetail(false)
                 }}>
-                    <Paper className={classes.detailedNoteArea}>
+                    <Paper className={classes.detailedNoteArea} style={{background: color}}>
                         <Grid container className={classes.contentGrid} spacing={2}>
                             <Grid item xs={12} className={classes.pinButton}>
                                 <Tooltip title={t('Pin')}>
@@ -168,7 +168,7 @@ export default function TakeNoteArea(props) {
                                     </IconButton>
                                 </Tooltip>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.noteArea}>
                                 <TextField
                                     className={classes.textAreaStyle}
                                     placeholder={t('TakeNote')}
@@ -178,12 +178,18 @@ export default function TakeNoteArea(props) {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.selectArea}>
                                 <Autocomplete
-                                    id="combo-box-demo"
                                     options={top100Films}
                                     getOptionLabel={(option) => option.title}
-                                    renderInput={(params) => <TextField {...params} label="Combo box" variant={"standard"} />}
+                                    renderInput={(params) => <TextField {...params} label={t('SelectBook')} variant={"standard"} />}
+                                />
+                            </Grid>
+                            <Grid item xs={12} className={classes.selectArea}>
+                                <Autocomplete
+                                    options={top100Films}
+                                    getOptionLabel={(option) => option.title}
+                                    renderInput={(params) => <TextField {...params} label={t('SelectCategory')} variant={"standard"} />}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -355,7 +361,7 @@ export default function TakeNoteArea(props) {
         }
     }
     return (
-        <Grid container style={{background: color}}>
+        <Grid container>
             <Grid item lg={4} md={3} sm={2} xs={0}/>
             <Grid item lg={4} md={6} sm={8} xs={12}>
                 {handleGetDetailedNoteArea()}

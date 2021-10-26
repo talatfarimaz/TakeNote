@@ -63,7 +63,7 @@ export const AddBookModal = forwardRef((props, ref) => {
     };
     return (
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" maxWidth={"sm"} fullWidth={true}
-                open={open}>
+                open={open} classes={{paperFullWidth: classes.paperFullWidth, paper: classes.paperFullWidthMargin}}>
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                 {t('AddBook')}
             </DialogTitle>

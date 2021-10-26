@@ -29,9 +29,9 @@ const DialogActions = withStyles((theme) => ({
 
 const ColorList =
     [DefaultTheme.palette.primary.mainAlternative, DefaultTheme.palette.dark.mainAlternative,
-        DefaultTheme.palette.secondary.mainAlternative, DefaultTheme.palette.primary.light,
+        DefaultTheme.palette.secondary.mainAlternative, DefaultTheme.palette.primary.lightAlternative,
         DefaultTheme.palette.link.light, DefaultTheme.palette.purple.main,
-        DefaultTheme.palette.success.contrastText, DefaultTheme.palette.indigo.main,
+        DefaultTheme.palette.default.mainLight, DefaultTheme.palette.indigo.main,
         DefaultTheme.palette.teal.main, DefaultTheme.palette.green.main,
         DefaultTheme.palette.orange.main, DefaultTheme.palette.yellow.main]
 
@@ -88,7 +88,7 @@ export const ColorSelectorModal = forwardRef((props, ref) => {
     };
     return (
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" fullWidth={false}
-                open={open}>
+                open={open} classes={{paperFullWidth: classes.paperFullWidth, paper: classes.paperFullWidthMargin}}>
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                 {t('SelectColor')}
             </DialogTitle>

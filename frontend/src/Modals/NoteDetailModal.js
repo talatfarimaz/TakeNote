@@ -272,7 +272,9 @@ export const NoteDetailModal = forwardRef((props, ref) => {
 
     return (
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" maxWidth={"sm"}
-                PaperProps={{style: {backgroundColor: color}}} fullWidth={true} open={open}>
+                PaperProps={{style: {backgroundColor: color}}}
+                classes={{paperFullWidth: classes.paperFullWidth, paper: classes.paperFullWidthMargin}} fullWidth={true}
+                open={open}>
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                 {t('AddBook')}
             </DialogTitle>
