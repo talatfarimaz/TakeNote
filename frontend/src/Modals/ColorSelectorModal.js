@@ -74,8 +74,10 @@ export const ColorSelectorModal = forwardRef((props, ref) => {
                         color="inherit"
                         size={"medium"}
                         onClick={(event) => {
+                            props.setColor(color);
                             event.stopPropagation();
                             event.preventDefault();
+                            handleClose();
                         }}
                     >
                         <FiberManualRecordIcon style={{color: color}} className={classes.colorSize}/>
