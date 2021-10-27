@@ -5,7 +5,9 @@ const DefaultTheme = createTheme({
         primary: {
             main: "#ff5757",
             dark: "#B23C3C",
-            light: "#ff6a6a"
+            light: "#ff6a6a",
+            mainAlternative: "#ffdfdf",
+            lightAlternative: "ffc1c1"
         },
         danger: {
             main: "#ff5757",
@@ -27,7 +29,8 @@ const DefaultTheme = createTheme({
             contrastLight: "#4D4D4D",
             contrastDark: "#7A7A7A",
             secondAlternative: "#29303B",
-            thirdAlternative: "#464646"
+            thirdAlternative: "#464646",
+            mainAlternative: "#d2d2d2"
         }
         ,
         secondary: {
@@ -38,6 +41,7 @@ const DefaultTheme = createTheme({
             alternativeDark: "#117520",
             alternativeLight: "#64c270",
             secondAlternative: "#4dbd74",
+            mainAlternative: "#dfeecf"
         },
         success: {
             main: '#a2cf6e',
@@ -47,7 +51,8 @@ const DefaultTheme = createTheme({
         }
         ,
         link: {
-            main: '#9C27B0'
+            main: '#9C27B0',
+            light: "#e8d0ec"
         }
         ,
         default: {
@@ -91,22 +96,22 @@ const DefaultTheme = createTheme({
             main: '#35baf6',
         },
         yellow: {
-            main: '#ffef62'
+            main: '#fff6ae'
         },
         orange: {
-            main: "#ffac33"
+            main: "#ffd395"
         },
         green: {
-            main: "#6fbf73"
+            main: "#c3e3c5"
         },
         teal: {
-            main: "#33ab9f"
+            main: "#aadbd7"
         },
         indigo: {
-            main: "#6573c3"
+            main: "#bfc5e5"
         },
         purple: {
-            main: "#8561c5"
+            main: "#ddd4ef"
         }
 
     },

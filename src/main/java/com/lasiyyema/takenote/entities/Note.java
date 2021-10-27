@@ -28,6 +28,9 @@ public class Note {
     @Column(name = "PageNumber")
     private Integer pageNumber;
 
+    @Column(name = "Color", length = 100, nullable = false)
+    private String color;
+
     @OneToOne(mappedBy = "noteBook")
     private NoteMapBook noteMapBook;
 

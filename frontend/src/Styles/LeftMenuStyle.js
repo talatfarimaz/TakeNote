@@ -48,7 +48,7 @@ const LeftMenuStyle = makeStyles(theme => ({
             top: "64px"
         },
         [theme.breakpoints.only('xs')]: {
-            top: "57px"
+            top: "56px"
         },
     },
     drawerClose: {
