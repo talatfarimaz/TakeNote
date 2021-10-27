@@ -1,6 +1,7 @@
 package com.lasiyyema.takenote.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,8 +21,9 @@ public class Book implements Serializable {
     @Column(name = "BookName", length = 100, nullable = false)
     private String bookName;
 
+    @CreationTimestamp
     @Column(name = "CreateDate", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
     @OneToOne(mappedBy = "book")

@@ -1,8 +1,10 @@
 package com.lasiyyema.takenote.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "noteMapCategory", uniqueConstraints = {@UniqueConstraint(columnNames = {"Id"})})
@@ -20,5 +22,8 @@ public class NoteMapCategory {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
-
+    @CreationTimestamp
+    @Column(name = "CreateDate", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
 }

@@ -1,6 +1,7 @@
 package com.lasiyyema.takenote.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,8 +20,9 @@ public class Note {
     @Column(name = "NoteContent", length = 2000, nullable = false)
     private String noteContent;
 
+    @CreationTimestamp
     @Column(name = "CreateDate", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
     @Column(name = "PageNumber")

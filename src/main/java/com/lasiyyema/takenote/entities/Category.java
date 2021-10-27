@@ -1,6 +1,7 @@
 package com.lasiyyema.takenote.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ public class Category {
     @Column(name = "Category", length = 200, nullable = false)
     private String category;
 
+    @CreationTimestamp
     @Column(name = "CreateDate", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
     @OneToMany(mappedBy = "category",

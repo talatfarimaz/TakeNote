@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 
@@ -20,8 +21,15 @@ public class BookController implements ErrorController {
     }
 
     @PostMapping
-    public Book save(@RequestBody Book book) {
-        book.setCreateDate(new Date());
-        return bookRepository.save(book);
+    public Book save(@RequestBody Book book,  RedirectAttributes redirectAttributes) {
+        try {
+            bookRepository.save(book);
+            redirectAttributes.addFlashAttribute("message", "Successful!");
+            return book;
+
+        }
+        catch (Exception e) {
+          throw e;
+        }
     }
 }

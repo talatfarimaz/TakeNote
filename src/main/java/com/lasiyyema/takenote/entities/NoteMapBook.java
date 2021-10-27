@@ -1,7 +1,10 @@
 package com.lasiyyema.takenote.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "noteMapBook", uniqueConstraints = {@UniqueConstraint(columnNames = {"Id"})})
@@ -19,5 +22,10 @@ public class NoteMapBook {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bookId", referencedColumnName = "Id")
     private Book book;
+
+    @CreationTimestamp
+    @Column(name = "CreateDate", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
 
 }
