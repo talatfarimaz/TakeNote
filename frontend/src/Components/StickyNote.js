@@ -1,4 +1,4 @@
-import {CardActionArea, Grid, Tooltip, Typography} from "@material-ui/core";
+import {CardActionArea, Grid, Paper, Tooltip, Typography} from "@material-ui/core";
 import React, {useRef} from "react";
 import StickyNoteStyle from "../Styles/StickyNoteStyle";
 import IconButton from "@material-ui/core/IconButton";
@@ -8,20 +8,43 @@ import ImageIcon from '@material-ui/icons/Image';
 import ArchiveIcon from "@material-ui/icons/Archive";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import GpsFixedSharpIcon from '@material-ui/icons/GpsFixedSharp';
 import {ColorSelectorModal} from "../Modals/ColorSelectorModal";
 import {useTranslation} from "react-i18next";
+import {NoteDetailModal} from "../Modals/NoteDetailModal";
 
 export default function StickyNote(props) {
     const classes = StickyNoteStyle();
-    const childRef = useRef();
-    const handleOpenColorSelector = (event) => {
-        childRef.current.handleClickOpenWithRef();
-    };
+    const childColorRef = useRef();
+    const childNoteRef = useRef();
     const {t} = useTranslation();
+    const handleOpenColorSelector = (event) => {
+        childColorRef.current.handleClickOpenWithRef();
+    };
+    const handleClickOpenNoteDetailModal = () => {
+        childNoteRef.current.handleClickOpenWithRef(props.note, props.color);
+    }
     return (
-        <div className={classes.stickyPadding}>
-            <CardActionArea className={classes.stickyCardArea}>
+        <Paper className={classes.stickyPadding} style={{background: props.color}}>
+            <CardActionArea onClick={() => {
+                handleClickOpenNoteDetailModal()
+            }}>
                 <Grid container className={classes.contentGrid} spacing={2}>
+                    <Grid item xs={12} className={classes.pinButton}>
+                        <Tooltip title={t('Pin')}>
+                            <IconButton
+                                color="inherit"
+                                size={"small"}
+                                onClick={event => {
+                                    event.stopPropagation();
+                                    event.preventDefault();
+                                    alert("Button clicked");
+                                }}
+                            >
+                                <GpsFixedSharpIcon fontSize={"small"}/>
+                            </IconButton>
+                        </Tooltip>
+                    </Grid>
                     <Grid item xs={12}>
                         <Typography className={classes.noteStyle}>{props.note}</Typography>
                     </Grid>
@@ -121,8 +144,9 @@ export default function StickyNote(props) {
                     </Grid>
                 </Grid>
             </CardActionArea>
-            <ColorSelectorModal ref={childRef}/>
-        </div>
+            <ColorSelectorModal ref={childColorRef}/>
+            <NoteDetailModal ref={childNoteRef}/>
+        </Paper>
     );
 
 }

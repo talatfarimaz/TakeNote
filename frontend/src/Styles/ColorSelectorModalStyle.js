@@ -8,6 +8,12 @@ const ColorSelectorModalStyle = makeStyles((theme) => ({
     },
     colorSize: {
         fontSize: "50px"
+    },
+    paperFullWidth: {
+        width: "100%"
+    },
+    paperFullWidthMargin: {
+        margin: "unset"
     }
 }));
 

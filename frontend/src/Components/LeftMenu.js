@@ -16,6 +16,7 @@ import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import ClassIcon from '@material-ui/icons/Class';
 import {AddBookModal} from "../Modals/AddBookModal";
 import {AddCategoryModal} from "../Modals/AddCategoryModal";
+import {Tooltip} from "@material-ui/core";
 
 export default function LeftMenu(props) {
     const classes = LeftMenuStyle();
@@ -48,31 +49,43 @@ export default function LeftMenu(props) {
         >
             <List>
                 <ListItem button key={t('Notes')} className={classes.listItemIcon}>
-                    <ListItemIcon><NotesIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
+                    <Tooltip title={t('Notes')}>
+                        <ListItemIcon><NotesIcon/></ListItemIcon>
+                    </Tooltip>
                     <ListItemText primary={t('Notes')}/>
                 </ListItem>
                 <ListItem button key={t('Reminders')} className={classes.listItemIcon}>
-                    <ListItemIcon><AccessAlarmIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
+                    <Tooltip title={t('Reminders')}>
+                        <ListItemIcon><AccessAlarmIcon /></ListItemIcon>
+                    </Tooltip>
                     <ListItemText primary={t('Reminders')}/>
                 </ListItem>
                 <ListItem button key={t('Archive')} className={classes.listItemIcon}>
-                    <ListItemIcon><ArchiveIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
+                    <Tooltip title={t('Archive')}>
+                        <ListItemIcon><ArchiveIcon /></ListItemIcon>
+                    </Tooltip>
                     <ListItemText primary={t('Archive')}/>
                 </ListItem>
                 <ListItem button key={t('AddBook')} onClick={() => {
                     handleAddBook()
                 }} className={classes.listItemIcon}>
-                    <ListItemIcon><CollectionsBookmarkIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
+                    <Tooltip title={t('AddBook')}>
+                        <ListItemIcon><CollectionsBookmarkIcon /></ListItemIcon>
+                    </Tooltip>
                     <ListItemText primary={t('AddBook')}/>
                 </ListItem>
                 <ListItem button key={t('AddCategory')} onClick={() => {
                     handleAddCategory()
                 }} className={classes.listItemIcon}>
-                    <ListItemIcon><ClassIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
+                    <Tooltip title={t('AddCategory')}>
+                        <ListItemIcon><ClassIcon /></ListItemIcon>
+                    </Tooltip>
                     <ListItemText primary={t('AddCategory')}/>
                 </ListItem>
                 <ListItem button key={t('Rubbish')} className={classes.listItemIcon}>
-                    <ListItemIcon><DeleteSweepIcon color={"primary"} fontSize={"large"}/></ListItemIcon>
+                    <Tooltip title={t('Rubbish')}>
+                        <ListItemIcon><DeleteSweepIcon/></ListItemIcon>
+                    </Tooltip>
                     <ListItemText primary={t('Rubbish')}/>
                 </ListItem>
             </List>

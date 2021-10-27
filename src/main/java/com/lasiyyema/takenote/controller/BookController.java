@@ -23,10 +23,8 @@ public class BookController implements ErrorController {
     @PostMapping
     public Book save(@RequestBody Book book,  RedirectAttributes redirectAttributes) {
         try {
-            bookRepository.save(book);
-            redirectAttributes.addFlashAttribute("message", "Successful!");
-            return book;
-
+            book.setCreateDate(new Date());
+            return bookRepository.save(book);
         }
         catch (Exception e) {
           throw e;

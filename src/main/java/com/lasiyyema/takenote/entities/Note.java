@@ -28,6 +28,9 @@ public class Note {
     @Column(name = "PageNumber")
     private Integer pageNumber;
 
+    @Column(name = "Color", length = 100, nullable = false)
+    private String color;
+
     @OneToOne(mappedBy = "noteBook")
     private NoteMapBook noteMapBook;
 
@@ -39,11 +42,12 @@ public class Note {
     public Note() {
     }
 
-    public Note(Integer id, String noteContent, Date createDate, Integer pageNumber, Book book, Set<Category> categories) {
+    public Note(Integer id, String noteContent, Date createDate, Integer pageNumber, Book book, Set<Category> categories, String color) {
         this.id = id;
         this.noteContent = noteContent;
         this.createDate = createDate;
         this.pageNumber = pageNumber;
+        this.color = color;
     }
 }
 
