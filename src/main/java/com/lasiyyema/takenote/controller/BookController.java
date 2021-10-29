@@ -20,7 +20,7 @@ public class BookController implements ErrorController {
         this.bookRepository = bookRepository;
     }
 
-    @PostMapping
+    @PostMapping("/addBook")
     public Book save(@RequestBody Book book,  RedirectAttributes redirectAttributes) {
         try {
             book.setCreateDate(new Date());

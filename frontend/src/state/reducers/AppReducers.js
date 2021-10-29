@@ -3,7 +3,7 @@ import * as actionTypes from "../actionTypes"
 const INITIAL_APP_STATE = {
     title: "First Screen",
     leftMenuOpenState: false,
-    notesListPreview: false,
+    notesListPreview: true,
 };
 
 export default (state = INITIAL_APP_STATE, action) => {

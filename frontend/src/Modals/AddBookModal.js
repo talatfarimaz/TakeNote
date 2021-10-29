@@ -49,7 +49,7 @@ export const AddBookModal = forwardRef((props, ref) => {
     };
 
     const handleSaveBook = () => {
-        axios.post('/books', {
+        axios.post('/books/addBook', {
             bookName: bookName
         }).then(function (response) {
             console.log(response);
