@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeHandle} from 'react';
+import React, {forwardRef, useImperativeHandle, useRef} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,6 +10,7 @@ import {useTranslation} from "react-i18next";
 import {FormControl, TextField} from "@material-ui/core";
 import DialogTitle from "./DialogTitle";
 import axios from "axios";
+import {Notification} from "./Notification";
 
 
 const DialogContent = withStyles((theme) => ({
@@ -38,6 +39,7 @@ export const AddBookModal = forwardRef((props, ref) => {
     const [bookName, setBookName] = React.useState(null);
     const {t} = useTranslation();
     const classes = AddBookModalStyle();
+    const childRefBook = useRef();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -52,9 +54,10 @@ export const AddBookModal = forwardRef((props, ref) => {
         axios.post('/books/addBook', {
             bookName: bookName
         }).then(function (response) {
-            console.log(response);
+            setOpen(false);
+            childRefBook.current.handleClickOpenWithRef();
         }).catch(function (error) {
-            console.log(error);
+            setOpen(false);
         });
     }
 
@@ -85,6 +88,7 @@ export const AddBookModal = forwardRef((props, ref) => {
                     </Typography>
                 </Button>
             </DialogActions>
+            <Notification ref={childRefBook}/>
         </Dialog>
     );
 })

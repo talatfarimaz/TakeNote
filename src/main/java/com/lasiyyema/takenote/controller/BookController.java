@@ -21,10 +21,11 @@ public class BookController implements ErrorController {
     }
 
     @PostMapping("/addBook")
-    public Book save(@RequestBody Book book,  RedirectAttributes redirectAttributes) {
+    public long save(@RequestBody Book book,  RedirectAttributes redirectAttributes) {
         try {
             book.setCreateDate(new Date());
-            return bookRepository.save(book);
+            bookRepository.save(book);
+            return book.getId();
         }
         catch (Exception e) {
           throw e;
