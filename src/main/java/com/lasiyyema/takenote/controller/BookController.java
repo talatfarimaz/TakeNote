@@ -3,13 +3,11 @@ package com.lasiyyema.takenote.controller;
 import com.lasiyyema.takenote.entities.Book;
 import com.lasiyyema.takenote.repository.BookRepository;
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -21,7 +19,7 @@ public class BookController implements ErrorController {
     }
 
     @PostMapping("/addBook")
-    public long save(@RequestBody Book book,  RedirectAttributes redirectAttributes) {
+    public long addBook(@RequestBody Book book,  RedirectAttributes redirectAttributes) {
         try {
             book.setCreateDate(new Date());
             bookRepository.save(book);
@@ -31,4 +29,15 @@ public class BookController implements ErrorController {
           throw e;
         }
     }
+
+    @GetMapping("/getBookList")
+    public List<Book> getBookList () {
+        try {
+            return bookRepository.findAll();
+        }
+        catch (Exception e) {
+            throw e;
+        }
+    }
+
 }
