@@ -11,6 +11,7 @@ import {FormControl, TextField} from "@material-ui/core";
 import DialogTitle from "./DialogTitle";
 import axios from "axios";
 import {Notification} from "./Notification";
+import NotificationTypes from "../enums/NotificationTypes";
 
 
 const DialogContent = withStyles((theme) => ({
@@ -40,6 +41,7 @@ export const AddBookModal = forwardRef((props, ref) => {
     const {t} = useTranslation();
     const classes = AddBookModalStyle();
     const childRefBook = useRef();
+    const duration = 2000;
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -51,14 +53,23 @@ export const AddBookModal = forwardRef((props, ref) => {
     };
 
     const handleSaveBook = () => {
-        axios.post('/books/addBook', {
-            bookName: bookName
-        }).then(function (response) {
-            setOpen(false);
-            childRefBook.current.handleClickOpenWithRef();
-        }).catch(function (error) {
-            setOpen(false);
-        });
+        if (bookName !== null) {
+            axios.post('/books/addBook', {
+                bookName: bookName
+            }).then(function (response) {
+                childRefBook.current.handleClickOpenWithRef(duration, t('SuccessMessage'), NotificationTypes.success);
+                setTimeout(function () {
+                    handleClose();
+                }, duration);
+            }).catch(function (error) {
+                childRefBook.current.handleClickOpenWithRef(duration, t('ErrorMessage'), NotificationTypes.error);
+                setTimeout(function () {
+                    setOpen(false)
+                }, duration);
+            });
+        } else {
+            childRefBook.current.handleClickOpenWithRef(duration, t('NullValueCheck', {value: t('Book')}), NotificationTypes.warning);
+        }
     }
 
     const handleChange = (event) => {
@@ -88,7 +99,7 @@ export const AddBookModal = forwardRef((props, ref) => {
                     </Typography>
                 </Button>
             </DialogActions>
-            <Notification ref={childRefBook}/>
+            <Notification ref={childRefBook} duration={duration}/>
         </Dialog>
     );
 })

@@ -24,5 +24,9 @@
   "Pin": "Sabitle",
   "TakeNote": "Not Alın...",
   "SelectBook": "Kitap Seçiniz",
-  "SelectCategory": "Kategori Seçiniz"
+  "SelectCategory": "Kategori Seçiniz",
+  "SuccessMessage": "Başarılı bir şekilde kaydedildi.",
+  "ErrorMessage": "Hata oluştu!",
+  "NullValueCheck": "{{value}} alanı boş olamaz!"
+
 }

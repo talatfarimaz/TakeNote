@@ -7,12 +7,18 @@ export const Notification = forwardRef((props, ref) => {
     useImperativeHandle(
         ref,
         () => ({
-            handleClickOpenWithRef() {
-                setOpen(true)
+            handleClickOpenWithRef(duration, message, severity) {
+                setOpen(true);
+                setDuration(duration);
+                setMessage(message);
+                setSeverity(severity);
             }
         }),
     )
     const [open, setOpen] = React.useState(false);
+    const [duration, setDuration] = React.useState(2000);
+    const [message, setMessage] = React.useState("");
+    const [severity, setSeverity] = React.useState("");
     const classes = AppContentStyle();
     const [state, setState] = React.useState({
         vertical: 'top',
@@ -28,12 +34,13 @@ export const Notification = forwardRef((props, ref) => {
 
     return (
         <Snackbar
-            autoHideDuration={6000}
+            autoHideDuration={duration}
             anchorOrigin={{vertical, horizontal}}
             open={open}
             key={vertical + horizontal}
         >
-            <Alert severity="success">This is an error message!</Alert>
+            <Alert      onClose={() => {
+                setOpen(false)}} severity={severity}>{message}</Alert>
         </Snackbar>
     );
 })

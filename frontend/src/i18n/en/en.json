@@ -24,5 +24,9 @@
   "Pin": "Pin",
   "TakeNote": "Take Note...",
   "SelectBook": "Select Book",
-  "SelectCategory": "Select Category"
+  "SelectCategory": "Select Category",
+  "SuccessMessage": "Saved successfully.",
+  "ErrorMessage": "Error created!",
+  "NullValueCheck": "Field {{value}} cannot be empty!"
+
 }
