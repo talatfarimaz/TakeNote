@@ -3,10 +3,14 @@ package com.lasiyyema.takenote.controller;
 import com.lasiyyema.takenote.dtos.BookDTO;
 import com.lasiyyema.takenote.entities.Book;
 import com.lasiyyema.takenote.repository.BookRepository;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +22,8 @@ public class BookController implements ErrorController {
     private final BookRepository bookRepository;
 
     private final ModelMapper modelMapper;
+    private static SessionFactory factory;
+
 
     public BookController(BookRepository bookRepository, ModelMapper modelMapper) {
         this.bookRepository = bookRepository;
@@ -48,6 +54,16 @@ public class BookController implements ErrorController {
         } catch (Exception e) {
             throw e;
         }
+
+       /* try {
+            Session session = factory.openSession();
+            String hql = "SELECT E.bookName FROM Book E";
+            Query query = (Query) session.createQuery(hql);
+            List results = query.list();
+            return results;
+        } catch (Exception e) {
+            throw e;
+        }*/
     }
 
 }
