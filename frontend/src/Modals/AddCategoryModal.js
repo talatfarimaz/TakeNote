@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeHandle} from 'react';
+import React, {forwardRef, useImperativeHandle, useRef} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,6 +10,8 @@ import {useTranslation} from "react-i18next";
 import {FormControl, TextField} from "@material-ui/core";
 import axios from "axios";
 import DialogTitle from "./DialogTitle";
+import NotificationTypes from "../enums/NotificationTypes";
+import {Notification} from "./Notification";
 
 const DialogContent = withStyles((theme) => ({
     root: {
@@ -37,6 +39,8 @@ export const AddCategoryModal = forwardRef((props, ref) => {
     const [categoryName, setCategoryName] = React.useState(null);
     const {t} = useTranslation();
     const classes = AddBookModalStyle();
+    const childRefBook = useRef();
+    const duration = 2000;
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -47,14 +51,24 @@ export const AddCategoryModal = forwardRef((props, ref) => {
         setCategoryName(null);
     };
 
-    const handleSaveBook = () => {
-        axios.post('/categories', {
-            bookName: categoryName
-        }).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
-        });
+    const handleSaveCategory = () => {
+        if (categoryName !== null) {
+            axios.post('/categories/addCategory', {
+                categoryName: categoryName
+            }).then(function (response) {
+                childRefBook.current.handleClickOpenWithRef(duration, t('SuccessMessage'), NotificationTypes.success);
+                setTimeout(function () {
+                    handleClose();
+                }, duration);
+            }).catch(function (error) {
+                childRefBook.current.handleClickOpenWithRef(duration, t('ErrorMessage'), NotificationTypes.error);
+                setTimeout(function () {
+                    setOpen(false)
+                }, duration);
+            });
+        } else {
+            childRefBook.current.handleClickOpenWithRef(duration, t('NullValueCheck', {value: t('Book')}), NotificationTypes.warning);
+        }
     }
 
     const handleChange = (event) => {
@@ -73,7 +87,7 @@ export const AddCategoryModal = forwardRef((props, ref) => {
                 </FormControl>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={handleSaveBook} color="primary" variant={"contained"}>
+                <Button autoFocus onClick={handleSaveCategory} color="primary" variant={"contained"}>
                     <Typography>
                         {t('Save')}
                     </Typography>
@@ -84,6 +98,7 @@ export const AddCategoryModal = forwardRef((props, ref) => {
                     </Typography>
                 </Button>
             </DialogActions>
+            <Notification ref={childRefBook} duration={duration}/>
         </Dialog>
     );
 })

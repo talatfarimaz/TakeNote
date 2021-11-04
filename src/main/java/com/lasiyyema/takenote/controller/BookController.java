@@ -47,7 +47,9 @@ public class BookController implements ErrorController {
             List<Book> bookList = bookRepository.findAll();
             List<BookDTO> bookDTOList = new ArrayList<>();
             for (Book book : bookList) {
-                BookDTO bookDTO = modelMapper.map(book, BookDTO.class);
+                BookDTO bookDTO = new BookDTO();
+                bookDTO.setId(book.getId());
+                bookDTO.setBookName(book.getBookName());
                 bookDTOList.add(bookDTO);
             }
             return bookDTOList;

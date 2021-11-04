@@ -43,9 +43,17 @@ export default function TakeNoteArea(props) {
     const [bookList, setBookList] = React.useState([]);
     useEffect(()=>{
         axios.get('/books/getBookList').then(function (response) {
-            console.log(response)
+            setBookList(response.data);
         }).catch(function (error) {
            console.log(error)
+        });
+    })
+    const [categoryList, setCategoryList] = React.useState([]);
+    useEffect(()=>{
+        axios.get('/categories/getCategoryList').then(function (response) {
+            setCategoryList(response.data);
+        }).catch(function (error) {
+            console.log(error)
         });
     })
     const childRef = useRef();
@@ -98,8 +106,8 @@ export default function TakeNoteArea(props) {
                             </Grid>
                             <Grid item xs={6} className={classes.selectArea}>
                                 <Autocomplete
-                                    options={bookList}
-                                    getOptionLabel={(option) => option.bookName}
+                                    options={categoryList}
+                                    getOptionLabel={(option) => option.categoryName}
                                     renderInput={(params) => <TextField {...params} label={t('SelectCategory')} variant={"standard"} />}
                                 />
                             </Grid>
