@@ -27,6 +27,8 @@
   "SelectCategory": "Kategori Seçiniz",
   "SuccessMessage": "Başarılı bir şekilde kaydedildi.",
   "ErrorMessage": "Hata oluştu!",
-  "NullValueCheck": "{{value}} alanı boş olamaz!"
-
+  "NullValueCheck": "{{value}} alanı boş olamaz!",
+  "Note": "Not",
+  "Page": "Sayfa Numarası",
+  "EnterPage": "Sayfa Numarası"
 }

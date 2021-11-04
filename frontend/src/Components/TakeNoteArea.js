@@ -28,6 +28,7 @@ import {ColorSelectorModal} from "../Modals/ColorSelectorModal";
 import DefaultTheme from "../Themes/DefaultTheme";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from "axios";
+import {Notification} from "../Modals/Notification";
 import NotificationTypes from "../enums/NotificationTypes";
 
 
@@ -38,16 +39,28 @@ export default function TakeNoteArea(props) {
     const [redo, setRedo] = React.useState(true);
     const [undo, setUndo] = React.useState(true);
     const [color, setColor] = React.useState(DefaultTheme.palette.success.contrastText);
-    const [category, setCategory] = React.useState(null);
+    const [category, setCategory] = React.useState([]);
     const [book, setBook] = React.useState(null);
     const [bookList, setBookList] = React.useState([]);
-    useEffect(()=>{
+    const [pageNumber, setPageNumber] = React.useState(null);
+    const childRefNote = useRef();
+    const duration = 1000;
+    const [note, setNote] = React.useState(null);
+    useEffect(() => {
         axios.get('/books/getBookList').then(function (response) {
-            console.log(response)
+            setBookList(response.data);
         }).catch(function (error) {
-           console.log(error)
+            console.log(error)
         });
-    })
+    }, [])
+    const [categoryList, setCategoryList] = React.useState([]);
+    useEffect(() => {
+        axios.get('/categories/getCategoryList').then(function (response) {
+            setCategoryList(response.data);
+        }).catch(function (error) {
+            console.log(error)
+        });
+    }, [])
     const childRef = useRef();
     const handleOpenColorSelector = (event) => {
         childRef.current.handleClickOpenWithRef();
@@ -55,12 +68,55 @@ export default function TakeNoteArea(props) {
     const handleOnChangeTakeNote = () => {
         setOpenDetail(true);
     }
+    const handleSetCategory = (event, values) => {
+        setCategory(values);
+    }
+    const handleClose = () => {
+        setNote(null);
+        setBook(null);
+        setCategory([]);
+    };
+    const handleSaveNote = () => {
+        if (note !== null) {
+            if (book !== null) {
+                if (category.length !== 0) {
+                    if (pageNumber !== null) {
+                        var categoryIdList = [];
+                        category.map((categ) => {
+                            categoryIdList.push(categ.id)
+                        });
+                        axios.post('notes/addNote', {
+                            noteContent: note,
+                            noteMapBook: book.id,
+                            noteMapCategory: categoryIdList,
+                            color: color,
+                            pageNumber: pageNumber
+                        }).then(function (response) {
+                            childRefNote.current.handleClickOpenWithRef(duration, t('SuccessMessage'), NotificationTypes.success);
+                            setTimeout(function () {
+                                handleClose();
+                            }, duration);
+                        }).catch(function (error) {
+                            childRefNote.current.handleClickOpenWithRef(duration, t('ErrorMessage'), NotificationTypes.error);
+                        });
+                        setOpenDetail(false)
+                    } else {
+                        childRefNote.current.handleClickOpenWithRef(duration, t('NullValueCheck', {value: t('Page')}), NotificationTypes.warning);
+                    }
+                } else {
+                    childRefNote.current.handleClickOpenWithRef(duration, t('NullValueCheck', {value: t('Category')}), NotificationTypes.warning);
+                }
+            } else {
+                childRefNote.current.handleClickOpenWithRef(duration, t('NullValueCheck', {value: t('Book')}), NotificationTypes.warning);
+            }
+        } else {
+            childRefNote.current.handleClickOpenWithRef(duration, t('NullValueCheck', {value: t('Note')}), NotificationTypes.warning);
+        }
+    }
     const handleGetDetailedNoteArea = () => {
         if (openDetail) {
             return (
-                <ClickAwayListener onClickAway={() => {
-                    setOpenDetail(false)
-                }}>
+                <ClickAwayListener onClickAway={handleSaveNote}>
                     <Paper className={classes.detailedNoteArea} style={{background: color}}>
                         <Grid container className={classes.contentGrid}>
                             <Grid item xs={12} className={classes.pinButton}>
@@ -86,21 +142,46 @@ export default function TakeNoteArea(props) {
                                     onSelect={() => {
                                         handleOnChangeTakeNote()
                                     }}
+                                    value={note}
+                                    maxRows={10}
+                                    onChange={(event) => {
+                                        setNote(event.target.value)
+                                    }}
                                 />
                             </Grid>
-                            <Grid item xs={6} className={classes.selectArea}>
+                            <Grid item xs={4} className={classes.selectArea}>
                                 <Autocomplete
                                     options={bookList}
                                     getOptionLabel={(option) => option.bookName}
-                                    onChange={(event, value) => {setBook(value.bookName)}}
-                                    renderInput={(params) => <TextField {...params} label={t('SelectBook')} variant={"standard"} />}
+                                    onChange={(event, value) => {
+                                        setBook(value)
+                                    }}
+                                    renderInput={(params) =>
+                                        <TextField {...params} label={t('SelectBook')} variant={"standard"}/>}
                                 />
                             </Grid>
-                            <Grid item xs={6} className={classes.selectArea}>
+                            <Grid item xs={4} className={classes.selectArea}>
                                 <Autocomplete
-                                    options={bookList}
-                                    getOptionLabel={(option) => option.bookName}
-                                    renderInput={(params) => <TextField {...params} label={t('SelectCategory')} variant={"standard"} />}
+                                    multiple
+                                    id="tags-standard"
+                                    options={categoryList}
+                                    getOptionLabel={(option) => option.categoryName}
+                                    onChange={handleSetCategory}
+                                    filterSelectedOptions
+                                    renderInput={(params) => <TextField {...params} label={t('SelectCategory')}
+                                                                        variant={"standard"}/>}
+                                />
+                            </Grid>
+                            <Grid item xs={4} className={classes.selectArea}>
+                                <TextField
+                                    className={classes.pageNumberStyle}
+                                    placeholder={t('EnterPage')}
+                                    inputProps={{'aria-label': t('EnterPage')}}
+                                    value={pageNumber}
+                                    onChange={(event) => {
+                                        setPageNumber(event.target.value)
+                                    }}
+                                    type="number"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -279,6 +360,7 @@ export default function TakeNoteArea(props) {
             </Grid>
             <Grid item lg={4} md={3} sm={2} xs={0}/>
             <ColorSelectorModal ref={childRef} setColor={setColor}/>
+            <Notification ref={childRefNote} duration={duration}/>
         </Grid>
     );
 

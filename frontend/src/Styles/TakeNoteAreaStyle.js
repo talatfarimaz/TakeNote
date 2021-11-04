@@ -58,6 +58,9 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
         paddingRight: "20px",
         marginTop: "20px",
         marginBottom: "40px"
+    },
+    pageNumberStyle: {
+        marginTop: "16px"
     }
 }))
 

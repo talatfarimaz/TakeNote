@@ -27,6 +27,8 @@
   "SelectCategory": "Select Category",
   "SuccessMessage": "Saved successfully.",
   "ErrorMessage": "Error created!",
-  "NullValueCheck": "Field {{value}} cannot be empty!"
-
+  "NullValueCheck": "Field {{value}} cannot be empty!",
+  "Note": "Note",
+  "Page": "PAge Number",
+  "EnterPage": "Page Number"
 }

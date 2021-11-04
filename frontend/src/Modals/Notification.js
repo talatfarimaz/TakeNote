@@ -39,8 +39,11 @@ export const Notification = forwardRef((props, ref) => {
             open={open}
             key={vertical + horizontal}
         >
-            <Alert      onClose={() => {
-                setOpen(false)}} severity={severity}>{message}</Alert>
+            <Alert onClose={() => {
+                setOpen(false)
+            }} severity={severity}>
+                {message}
+            </Alert>
         </Snackbar>
     );
 })

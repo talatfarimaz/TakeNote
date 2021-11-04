@@ -33,7 +33,6 @@ public class BookController implements ErrorController {
     @PostMapping("/addBook")
     public long addBook(@RequestBody Book book, RedirectAttributes redirectAttributes) {
         try {
-            book.setCreateDate(new Date());
             bookRepository.save(book);
             return book.getId();
         } catch (Exception e) {
@@ -47,7 +46,9 @@ public class BookController implements ErrorController {
             List<Book> bookList = bookRepository.findAll();
             List<BookDTO> bookDTOList = new ArrayList<>();
             for (Book book : bookList) {
-                BookDTO bookDTO = modelMapper.map(book, BookDTO.class);
+                BookDTO bookDTO = new BookDTO();
+                bookDTO.setId(book.getId());
+                bookDTO.setBookName(book.getBookName());
                 bookDTOList.add(bookDTO);
             }
             return bookDTOList;

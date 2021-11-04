@@ -1,11 +1,12 @@
 package com.lasiyyema.takenote.dtos;
+
 import lombok.Data;
 
 @Data
-public class BookDTO {
+public class CategoryDTO {
     private Integer id;
-    private String bookName;
+    private String categoryName;
 
-    public BookDTO() {
+    public CategoryDTO() {
     }
 }
