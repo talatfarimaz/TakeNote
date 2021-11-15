@@ -27,7 +27,6 @@ public class Category {
     private Date createDate;
 
     @OneToMany(mappedBy = "category",
-            cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Category> comments = new ArrayList<>();
 

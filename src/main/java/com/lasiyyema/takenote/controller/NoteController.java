@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.LinkedHashMap;
+
 @RestController
 @RequestMapping("/notes")
 public class NoteController implements ErrorController {
@@ -22,13 +24,14 @@ public class NoteController implements ErrorController {
     @PostMapping("/addNote")
     public long addBook(@RequestBody Object note) {
         try {
-            System.out.println(note);
-            /*noteRepository.save(note);
-            return note.getId();*/
-
+            Note noteData = new Note();
+            noteData.setColor((String) ((LinkedHashMap) note).get("color"));
+            noteData.setNoteContent((String) ((LinkedHashMap) note).get("noteContent"));
+            noteData.setPageNumber(Integer.parseInt(String.valueOf(((LinkedHashMap) note).get("pageNumber"))));
+            noteRepository.save(noteData);
+            return noteData.getId();
         } catch (Exception e) {
             throw e;
         }
-        return 0;
     }
 }

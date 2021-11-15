@@ -13,13 +13,14 @@ public class NoteMapBook {
 
     @Id
     @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "noteId", referencedColumnName = "Id")
     private Note noteBook;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "bookId", referencedColumnName = "Id")
     private Book book;
 

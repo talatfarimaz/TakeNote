@@ -15,6 +15,7 @@ public class Note {
 
     @Id
     @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "NoteContent", length = 2000, nullable = false)
