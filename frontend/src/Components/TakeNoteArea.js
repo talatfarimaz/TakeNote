@@ -76,6 +76,15 @@ export default function TakeNoteArea(props) {
         setBook(null);
         setCategory([]);
     };
+    const handleGetJsonData = (categoryIdList) =>{
+        return {
+            "noteContent": note,
+            "noteMapBook": book.id,
+            "noteMapCategory": categoryIdList,
+            "color": color,
+            "pageNumber": pageNumber
+        };
+    }
     const handleSaveNote = () => {
         if (note !== null) {
             if (book !== null) {
@@ -85,13 +94,9 @@ export default function TakeNoteArea(props) {
                         category.map((categ) => {
                             categoryIdList.push(categ.id)
                         });
-                        axios.post('notes/addNote', {
-                            noteContent: note,
-                            noteMapBook: book.id,
-                            noteMapCategory: categoryIdList,
-                            color: color,
-                            pageNumber: pageNumber
-                        }).then(function (response) {
+                        axios.post('notes/addNote',
+                            handleGetJsonData(categoryIdList)
+                        ).then(function (response) {
                             childRefNote.current.handleClickOpenWithRef(duration, t('SuccessMessage'), NotificationTypes.success);
                             setTimeout(function () {
                                 handleClose();
