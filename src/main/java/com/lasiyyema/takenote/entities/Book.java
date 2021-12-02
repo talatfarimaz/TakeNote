@@ -16,7 +16,7 @@ public class Book implements Serializable {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "BookName", length = 100, nullable = false)
     private String bookName;
@@ -33,7 +33,7 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(Integer id, String bookName, Date createDate) {
+    public Book(Long id, String bookName, Date createDate) {
         this.id = id;
         this.bookName = bookName;
         this.createDate = createDate;

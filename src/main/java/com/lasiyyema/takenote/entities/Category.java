@@ -16,7 +16,7 @@ public class Category {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "Category", length = 200, nullable = false)
     private String category;
@@ -33,7 +33,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(Integer id, String category, Date createDate) {
+    public Category(Long id, String category, Date createDate) {
         this.id = id;
         this.category = category;
         this.createDate = createDate;

@@ -14,7 +14,7 @@ public class NoteMapCategory {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "noteId", referencedColumnName = "Id")

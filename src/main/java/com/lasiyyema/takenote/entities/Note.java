@@ -16,7 +16,7 @@ public class Note {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "NoteContent", length = 2000, nullable = false)
     private String noteContent;
@@ -43,7 +43,7 @@ public class Note {
     public Note() {
     }
 
-    public Note(Integer id, String noteContent, Date createDate, Integer pageNumber, Book book, Set<Category> categories, String color) {
+    public Note(Long id, String noteContent, Date createDate, Integer pageNumber, Book book, Set<Category> categories, String color) {
         this.id = id;
         this.noteContent = noteContent;
         this.createDate = createDate;

@@ -118,10 +118,14 @@ export default function TakeNoteArea(props) {
             childRefNote.current.handleClickOpenWithRef(duration, t('NullValueCheck', {value: t('Note')}), NotificationTypes.warning);
         }
     }
+    const handleCloseDetail = () => {
+        setOpenDetail(false);
+        handleClose();
+    }
     const handleGetDetailedNoteArea = () => {
         if (openDetail) {
             return (
-                <ClickAwayListener onClickAway={handleSaveNote}>
+                <ClickAwayListener onClickAway={handleCloseDetail}>
                     <Paper className={classes.detailedNoteArea} style={{background: color}}>
                         <Grid container className={classes.contentGrid}>
                             <Grid item xs={12} className={classes.pinButton}>
@@ -313,7 +317,14 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={4} className={classes.cancelButton}>
+                                    <Grid item xs={2} className={classes.cancelButton}>
+                                        <Button onClick={handleSaveNote}>
+                                            <Typography className={classes.cancelButtonText}>
+                                                {t('Save')}
+                                            </Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item xs={2} className={classes.cancelButton}>
                                         <Button onClick={() => {
                                             setOpenDetail(false)
                                         }}>

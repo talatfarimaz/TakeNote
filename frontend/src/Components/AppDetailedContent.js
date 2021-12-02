@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import clsx from "clsx";
 import AppDetailedContentStyle from "../Styles/AppDetailedContentStyle";
 import {useSelector} from "react-redux";
@@ -7,6 +7,7 @@ import {Grid} from "@material-ui/core";
 import StickyNote from "./StickyNote";
 import TakeNoteArea from "./TakeNoteArea";
 import DefaultTheme from "../Themes/DefaultTheme";
+import axios from "axios";
 
 const strings = ["jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg\n\nghgdsahsdahdshghdgshdg\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjdkhdjhfjksdhfjk\n\nghgdsahsdahddddshghdgshdg", "jkjfhjdskhdsdsfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg"]
 
@@ -22,6 +23,15 @@ export default function AppDetailedContent(props) {
     const classes = AppDetailedContentStyle();
     const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
     const notesListPreview = useSelector(state => state.app.notesListPreview);
+    const [savedNoteList, setSavedNoteList] = React.useState([]);
+    useEffect(() => {
+        axios.get('/notes/getSavedNoteList').then(function (response) {
+            setBookList(response.data);
+        }).catch(function (error) {
+            console.log(error)
+        });
+    }, [])
+
     const handleNotesPreview = () => {
         if (notesListPreview) {
             return (
