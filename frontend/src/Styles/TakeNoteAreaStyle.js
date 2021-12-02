@@ -39,7 +39,7 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
         width: "100%"
     },
     cancelButton: {
-        textAlign: "right"
+        textAlign: "center"
     },
     cancelButtonText: {
         fontWeight: "bold",
