@@ -26,7 +26,7 @@ export default function AppDetailedContent(props) {
     const [savedNoteList, setSavedNoteList] = React.useState([]);
     useEffect(() => {
         axios.get('/notes/getSavedNoteList').then(function (response) {
-            setBookList(response.data);
+            setSavedNoteList(response.data);
         }).catch(function (error) {
             console.log(error)
         });

@@ -18,7 +18,7 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "BookName", length = 100, nullable = false)
+    @Column(name = "BookName", length = 100, nullable = false )
     private String bookName;
 
     @CreationTimestamp

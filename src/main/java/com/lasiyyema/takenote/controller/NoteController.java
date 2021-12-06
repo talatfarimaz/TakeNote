@@ -1,15 +1,17 @@
 package com.lasiyyema.takenote.controller;
 
-import com.lasiyyema.takenote.dtos.BookDTO;
 import com.lasiyyema.takenote.entities.Book;
 import com.lasiyyema.takenote.entities.Note;
 import com.lasiyyema.takenote.entities.NoteMapBook;
 import com.lasiyyema.takenote.entities.NoteMapCategory;
 import com.lasiyyema.takenote.repository.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,19 +67,21 @@ public class NoteController implements ErrorController {
   }
 
   @GetMapping("/getSavedNoteList")
-  public List<Note> getNoteList() {
+  public List getNoteList() {
     try {
-      return null;
 
-      /*select takenote.note.color, takenote.note.create_date, takenote.note.note_content, takenote.note.page_number, takenote.note.id, takenote.note_map_book.book_id, takenote.book.book_name, takenote.category.category from takenote.note
-      inner join takenote.note_map_book
-      on takenote.note.id = takenote.note_map_book.note_id
-      inner join takenote.book
-      on takenote.note_map_book.book_id = takenote.book.id
-      inner join takenote.note_map_category
-      on takenote.note.id = takenote.note_map_category.note_id
-      inner join takenote.category
-      on takenote.category.id = takenote.note_map_category.category_id*/
+      SessionFactory factory = null;
+      Session session = null;
+      Configuration configuration = new Configuration().configure();
+      factory = configuration.buildSessionFactory();
+      session = factory.openSession();
+      String hql = "SELECT Note.pageNumber FROM Note, NoteMapBook, Book WHERE Note.id = NoteMapBook.noteBook.id AND NoteMapBook.book.id = Book.id";
+      List<Object[]> resultList = session.createQuery(hql).getResultList();
+/*
+      Query query = (Query) session.createQuery(hql);
+*/
+      /*List results = query.list();*/
+      return resultList;
 
     } catch (Exception e) {
       throw e;
