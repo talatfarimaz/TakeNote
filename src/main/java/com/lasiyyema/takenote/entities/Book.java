@@ -5,7 +5,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "book", uniqueConstraints = {@UniqueConstraint(columnNames = {"Id"})})
@@ -26,8 +28,12 @@ public class Book implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @OneToOne(mappedBy = "book")
-    private NoteMapBook noteMapBook;
+    /*@OneToOne(mappedBy = "book")
+    private NoteMapBook noteMapBook;*/
+
+    @OneToMany(mappedBy = "bookName",
+            orphanRemoval = true)
+    private List<Book> books = new ArrayList<>();
 
 
     public Book() {

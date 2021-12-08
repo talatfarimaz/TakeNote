@@ -20,8 +20,11 @@ public class NoteMapBook {
     @JoinColumn(name = "noteId", referencedColumnName = "Id")
     private Note noteBook;
 
-    @OneToOne
+  /*  @OneToOne
     @JoinColumn(name = "bookId", referencedColumnName = "Id")
+    private Book book;*/
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Book book;
 
     @CreationTimestamp

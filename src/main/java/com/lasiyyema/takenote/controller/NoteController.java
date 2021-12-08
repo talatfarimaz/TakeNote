@@ -1,17 +1,14 @@
 package com.lasiyyema.takenote.controller;
 
-import com.lasiyyema.takenote.entities.Book;
+import com.lasiyyema.takenote.dtos.NoteDTO;
 import com.lasiyyema.takenote.entities.Note;
 import com.lasiyyema.takenote.entities.NoteMapBook;
 import com.lasiyyema.takenote.entities.NoteMapCategory;
 import com.lasiyyema.takenote.repository.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +44,7 @@ public class NoteController implements ErrorController {
       noteRepository.save(noteData);
       if (noteData.getId() != null) {
         NoteMapBook noteMapBook = new NoteMapBook();
-        long bookId =Long.parseLong(String.valueOf(note.get("noteMapBook")));
+        long bookId = Long.parseLong(String.valueOf(note.get("noteMapBook")));
         noteMapBook.setBook(bookRepository.getById((bookId)));
         noteMapBook.setNoteBook(noteData);
         noteMapBookRepository.save(noteMapBook);
@@ -67,35 +64,31 @@ public class NoteController implements ErrorController {
   }
 
   @GetMapping("/getSavedNoteList")
-  public List getNoteList() {
+  public List<NoteDTO> getNoteList() {
     try {
-
-      SessionFactory factory = null;
-      Session session = null;
-      Configuration configuration = new Configuration().configure();
-      factory = configuration.buildSessionFactory();
-      session = factory.openSession();
-      String hql = "SELECT Note.pageNumber FROM Note, NoteMapBook, Book WHERE Note.id = NoteMapBook.noteBook.id AND NoteMapBook.book.id = Book.id";
-      List<Object[]> resultList = session.createQuery(hql).getResultList();
-/*
-      Query query = (Query) session.createQuery(hql);
-*/
-      /*List results = query.list();*/
-      return resultList;
-
+      List<Note> noteList = noteRepository.findAll();
+      List<NoteDTO> noteDTOList = new ArrayList<>();
+      for (Note note : noteList) {
+        NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setNoteContent(note.getNoteContent());
+        noteDTO.setId(note.getId());
+        noteDTO.setColor(note.getColor());
+        noteDTO.setPageNumber(note.getPageNumber());
+        noteDTOList.add(noteDTO);
+      }
+      return noteDTOList;
     } catch (Exception e) {
       throw e;
     }
 
-       /* try {
-            Session session = factory.openSession();
-            String hql = "SELECT E.bookName FROM Book E";
-            Query query = (Query) session.createQuery(hql);
-            List results = query.list();
-            return results;
-        } catch (Exception e) {
-            throw e;
-        }*/
+    /* try {
+        Session session = factory.openSession();
+        String hql = "SELECT E.bookName FROM Book E";
+        Query query = (Query) session.createQuery(hql);
+        List results = query.list();
+        return results;
+    } catch (Exception e) {
+        throw e;
+    }*/
   }
-
 }

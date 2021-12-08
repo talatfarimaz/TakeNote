@@ -9,16 +9,6 @@ import TakeNoteArea from "./TakeNoteArea";
 import DefaultTheme from "../Themes/DefaultTheme";
 import axios from "axios";
 
-const strings = ["jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg\n\nghgdsahsdahdshghdgshdg\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjdkhdjhfjksdhfjk\n\nghgdsahsdahddddshghdgshdg", "jkjfhjdskhdsdsfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg", "jkjfhjdskhfjkhdjhfjksdhfjk\n\nghgdsahsdahdshghdgshdg"]
-
-const ColorList =
-    [DefaultTheme.palette.primary.mainAlternative, DefaultTheme.palette.dark.mainAlternative,
-        DefaultTheme.palette.secondary.mainAlternative, DefaultTheme.palette.primary.lightAlternative,
-        DefaultTheme.palette.link.light, DefaultTheme.palette.purple.main,
-        DefaultTheme.palette.default.mainLight, DefaultTheme.palette.indigo.main,
-        DefaultTheme.palette.teal.main, DefaultTheme.palette.green.main,
-        DefaultTheme.palette.orange.main, DefaultTheme.palette.yellow.main]
-
 export default function AppDetailedContent(props) {
     const classes = AppDetailedContentStyle();
     const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
@@ -33,16 +23,18 @@ export default function AppDetailedContent(props) {
     }, [])
 
     const handleNotesPreview = () => {
-        if (notesListPreview) {
+        if (notesListPreview && savedNoteList.length !== 0) {
             return (
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{250: 1, 500: 2, 750: 3, 1000: 4, 1250: 5, 1500: 6, 1750: 7}}
                 >
                     <Masonry>
-                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 4, 4, 3, 5, 6, 7, 8, 5, 4, 4, 3, 5, 6, 7, 8, 5, 4, 4, 3, 5, 6, 7, 8, 5, 4, 4, 3].map((item) => {
+                        {savedNoteList.map((item) => {
                             return (
-                                <StickyNote color={ColorList[Math.floor(Math.random() * ColorList.length)]}
-                                            note={strings[Math.floor(Math.random() * strings.length)]}/>
+                                <StickyNote color={item.color}
+                                            note={item.noteContent}
+                                            pageNumber={item.pageNumber}
+                                />
                             )
                         })}
                         <StickyNote/>
@@ -54,10 +46,12 @@ export default function AppDetailedContent(props) {
                 <Grid container spacing={2}>
                     <Grid item lg={4} md={3} sm={2} xs={0}/>
                     <Grid item lg={4} md={6} sm={8} xs={12}>
-                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 4, 4, 3, 5, 6, 7, 8, 5, 4, 4, 3, 5, 6, 7, 8, 5, 4, 4, 3, 5, 6, 7, 8, 5, 4, 4, 3].map((item) => {
+                        {savedNoteList.length !== 0 && savedNoteList.map((item) => {
                             return (
-                                <StickyNote color={ColorList[Math.floor(Math.random() * ColorList.length)]}
-                                            note={strings[Math.floor(Math.random() * strings.length)]}/>
+                                <StickyNote color={item.color}
+                                            note={item.noteContent}
+                                            pageNumber={item.pageNumber}
+                                />
                             )
                         })}
                     </Grid>
