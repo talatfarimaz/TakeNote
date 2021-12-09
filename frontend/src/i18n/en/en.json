@@ -30,5 +30,6 @@
   "NullValueCheck": "Field {{value}} cannot be empty!",
   "Note": "Note",
   "Page": "PAge Number",
-  "EnterPage": "Page Number"
+  "EnterPage": "Page Number",
+  "NoteTitle": "Note Detail"
 }

@@ -37,7 +37,6 @@ export default function AppDetailedContent(props) {
                                 />
                             )
                         })}
-                        <StickyNote/>
                     </Masonry>
                 </ResponsiveMasonry>
             )

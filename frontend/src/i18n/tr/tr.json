@@ -30,5 +30,6 @@
   "NullValueCheck": "{{value}} alanı boş olamaz!",
   "Note": "Not",
   "Page": "Sayfa Numarası",
-  "EnterPage": "Sayfa Numarası"
+  "EnterPage": "Sayfa Numarası",
+  "NoteTitle": "Not Detayı"
 }

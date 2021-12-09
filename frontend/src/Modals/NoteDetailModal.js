@@ -276,7 +276,7 @@ export const NoteDetailModal = forwardRef((props, ref) => {
                 classes={{paperFullWidth: classes.paperFullWidth, paper: classes.paperFullWidthMargin}} fullWidth={true}
                 open={open}>
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                {t('AddBook')}
+                {t('NoteTitle')}
             </DialogTitle>
             <DialogContent dividers>
                 {handleGetDetailedNoteArea()}
