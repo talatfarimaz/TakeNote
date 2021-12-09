@@ -7,7 +7,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {useTranslation} from "react-i18next";
-import {Grid} from "@material-ui/core";
+import {Grid, Popover} from "@material-ui/core";
 import axios from "axios";
 import DialogTitle from "./DialogTitle";
 import ColorSelectorModalStyle from "../Styles/ColorSelectorModalStyle";
@@ -87,6 +87,9 @@ export const ColorSelectorModal = forwardRef((props, ref) => {
         )
     };
     return (
+/*
+        <Popover open={true}></Popover>
+*/
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" fullWidth={false}
                 open={open} classes={{paperFullWidth: classes.paperFullWidth, paper: classes.paperFullWidthMargin}}>
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>

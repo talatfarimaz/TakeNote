@@ -22,6 +22,16 @@ export default function AppDetailedContent(props) {
         });
     }, [])
 
+    useEffect(() => {
+        if (props.refreshData ) {
+            axios.get('/notes/getSavedNoteList').then(function (response) {
+                setSavedNoteList(response.data);
+            }).catch(function (error) {
+                console.log(error)
+            });        }
+    }, [props.refreshData]);
+
+
     const handleNotesPreview = () => {
         if (notesListPreview && savedNoteList.length !== 0) {
             return (

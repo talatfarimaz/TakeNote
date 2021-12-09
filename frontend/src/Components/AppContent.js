@@ -8,7 +8,7 @@ export default function AppContent(props) {
     return (
         <div className={classes.root}>
             <LeftMenu/>
-            <AppDetailedContent/>
+            <AppDetailedContent refreshData={props.refreshData}/>
         </div>
     );
 }

@@ -8,11 +8,21 @@ import LeftMenu from "./Components/LeftMenu";
 import AppContent from "./Components/AppContent";
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            refreshData: false
+        }
+        this.handleRefreshData = this.handleRefreshData.bind(this);
+    }
+    handleRefreshData (refresh) {
+        this.setState({refreshData: refresh})
+    }
     render() {
         return (
             <div>
-                <AppNavbar/>
-                <AppContent/>
+                <AppNavbar owner={this}/>
+                <AppContent refreshData={this.state.refreshData}/>
             </div>
         );
     }

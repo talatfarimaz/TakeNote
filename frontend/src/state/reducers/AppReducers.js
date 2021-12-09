@@ -4,6 +4,7 @@ const INITIAL_APP_STATE = {
     title: "First Screen",
     leftMenuOpenState: false,
     notesListPreview: true,
+    notesRefresh: false
 };
 
 export default (state = INITIAL_APP_STATE, action) => {
@@ -14,6 +15,8 @@ export default (state = INITIAL_APP_STATE, action) => {
             return {...state, leftMenuOpenState: action.payload}
         case  actionTypes.NOTES_LIST_PREVIEW:
             return {...state, notesListPreview: action.payload}
+        case  actionTypes.NOTES_REFRESH:
+            return {...state, notesRefresh: action.payload}
         default:
             return state;
     }

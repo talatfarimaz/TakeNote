@@ -109,6 +109,9 @@ export const NoteDetailModal = forwardRef((props, ref) => {
                                     handleOnChangeTakeNote()
                                 }}
                                 value={noteDetail}
+                                multiline
+                                maxRows={50}
+                                InputProps={{readOnly: true}}
                             /> </Grid>
                         <Grid item xs={12}>
                             <Grid container spacing={1}>

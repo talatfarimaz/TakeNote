@@ -34,6 +34,7 @@ function AppNavbar(props) {
     const [anchorElMenu, setAnchorElMenu] = React.useState(null);
     const [activeLanguage, setActiveLanguage] = React.useState(i18n.language);
     const [listIcon, setListIcon] = React.useState(true);
+    const [refreshData, setRefreshData] = React.useState(false);
 
     const changeLanguageSelection = (lng) => {
         i18n.changeLanguage(lng);
@@ -200,7 +201,14 @@ function AppNavbar(props) {
                     </div>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton color="inherit">
+                        <IconButton color="inherit" onClick={()=>{
+                           /* dispatch({
+                                type: "NOTES_REFRESH",
+                                payload: true
+                            });*/
+                            setRefreshData(true);
+                            props.owner.handleRefreshData(refreshData)
+                        }}>
                             <SyncIcon color="action" fontSize={"large"}/>
                         </IconButton>
                         <IconButton color="inherit">
