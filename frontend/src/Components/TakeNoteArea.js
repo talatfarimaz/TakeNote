@@ -4,7 +4,7 @@ import {
     Divider,
     Grid,
     InputBase,
-    Paper,
+    Paper, Popover,
     TextField,
     Tooltip,
     Typography
@@ -30,6 +30,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from "axios";
 import {Notification} from "../Modals/Notification";
 import NotificationTypes from "../enums/NotificationTypes";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 
 export default function TakeNoteArea(props) {
@@ -46,6 +47,7 @@ export default function TakeNoteArea(props) {
     const childRefNote = useRef();
     const duration = 1000;
     const [note, setNote] = React.useState(null);
+    const [anchorEl, setAnchorEl] = React.useState(null);
     useEffect(() => {
         axios.get('/books/getBookList').then(function (response) {
             setBookList(response.data);
@@ -62,6 +64,15 @@ export default function TakeNoteArea(props) {
         });
     }, [])
     const childRef = useRef();
+    const handleClickPopover = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClosePopover = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
     const handleOpenColorSelector = (event) => {
         childRef.current.handleClickOpenWithRef();
     };
@@ -75,6 +86,8 @@ export default function TakeNoteArea(props) {
         setNote(null);
         setBook(null);
         setCategory([]);
+        setColor(null);
+        setPageNumber(null);
     };
     const handleGetJsonData = (categoryIdList) =>{
         return {
@@ -121,6 +134,31 @@ export default function TakeNoteArea(props) {
     const handleCloseDetail = () => {
         setOpenDetail(false);
         handleClose();
+    }
+    const ColorList =
+        [DefaultTheme.palette.primary.mainAlternative, DefaultTheme.palette.dark.mainAlternative,
+            DefaultTheme.palette.secondary.mainAlternative, DefaultTheme.palette.primary.lightAlternative,
+            DefaultTheme.palette.link.light, DefaultTheme.palette.purple.main,
+            DefaultTheme.palette.default.mainLight, DefaultTheme.palette.indigo.main,
+            DefaultTheme.palette.teal.main, DefaultTheme.palette.green.main,
+            DefaultTheme.palette.orange.main, DefaultTheme.palette.yellow.main]
+    const handleGetColors = () => {
+        return (
+            ColorList.map((color) =>
+                <Grid item xs={2} className={classes.colorGrid}>
+                    <IconButton
+                        color="inherit"
+                        size={"medium"}
+                        onClick={(event) => {
+                            setColor(color);
+                            handleClosePopover();
+                        }}
+                    >
+                        <FiberManualRecordIcon style={{color: color}} className={classes.colorSize}/>
+                    </IconButton>
+                </Grid>
+            )
+        )
     }
     const handleGetDetailedNoteArea = () => {
         if (openDetail) {
@@ -248,12 +286,29 @@ export default function TakeNoteArea(props) {
                                                 onClick={(event) => {
                                                     event.stopPropagation();
                                                     event.preventDefault();
-                                                    handleOpenColorSelector();
+                                                    handleClickPopover(event);
                                                 }}
                                             >
                                                 <FormatPaintIcon fontSize={"small"}/>
                                             </IconButton>
                                         </Tooltip>
+                                        <Popover
+                                            open={open}
+                                            anchorEl={anchorEl}
+                                            onClose={handleClosePopover}
+                                            anchorOrigin={{
+                                                vertical: 'bottom',
+                                                horizontal: 'center',
+                                            }}
+                                            transformOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'center',
+                                            }}
+                                        >
+                                            <Grid container className={classes.popoverGrid}>
+                                                {handleGetColors()}
+                                            </Grid>
+                                        </Popover>
                                     </Grid>
                                     <Grid item xs={1} className={classes.iconButtons}>
                                         <Tooltip title={t('CommonPerson')}>

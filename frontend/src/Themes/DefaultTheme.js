@@ -7,7 +7,7 @@ const DefaultTheme = createTheme({
             dark: "#B23C3C",
             light: "#ff6a6a",
             mainAlternative: "#ffdfdf",
-            lightAlternative: "ffc1c1"
+            lightAlternative: "#ffc1c1"
         },
         danger: {
             main: "#ff5757",

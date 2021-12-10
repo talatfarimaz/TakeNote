@@ -61,6 +61,17 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
     },
     pageNumberStyle: {
         marginTop: "16px"
+    },
+    colorGrid: {
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+    },
+    colorSize: {
+        fontSize: "30px"
+    },
+    popoverGrid: {
+        width: "250px"
     }
 }))
 
