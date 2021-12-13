@@ -43,17 +43,24 @@ export const NoteDetailModal = forwardRef((props, ref) => {
     useImperativeHandle(
         ref,
         () => ({
-            handleClickOpenWithRef(note, color) {
+            handleClickOpenWithRef(note, color, noteId, pageNumber) {
                 setOpen(true);
                 setColor(color);
                 setNoteDetail(note);
-                setOpenDetail(true)
+                setOpenDetail(true);
+                setPageNumber(pageNumber);
+                setNoteId(noteId);
+                handleSetNoteOtherDetail(noteId);
             }
         }),
     )
     const [open, setOpen] = React.useState(false);
     const [color, setColor] = React.useState(DefaultTheme.palette.success.contrastText);
     const [noteDetail, setNoteDetail] = React.useState(null);
+    const [pageNumber, setPageNumber] = React.useState(null);
+    const [noteId, setNoteId] = React.useState(null);
+    const [noteOtherDetail, setNoteOtherDetail] = React.useState(null);
+
     const classes = NoteDetailModalStyle();
     const handleClose = () => {
         setOpen(false);
@@ -66,6 +73,15 @@ export const NoteDetailModal = forwardRef((props, ref) => {
     const handleOpenColorSelector = (event) => {
         childRef.current.handleClickOpenWithRef();
     };
+    const handleSetNoteOtherDetail = (id) => {
+        if (id !== null) {
+            axios.get('/notes/getNoteDetail/' + id).then(function (response) {
+                setNoteOtherDetail(response.data);
+            }).catch(function (error) {
+                console.log(error)
+            });
+        }
+    }
     const handleOnChangeTakeNote = () => {
         setOpenDetail(true);
     }

@@ -44,6 +44,7 @@ export default function AppDetailedContent(props) {
                                 <StickyNote color={item.color}
                                             note={item.noteContent}
                                             pageNumber={item.pageNumber}
+                                            noteId={item.id}
                                 />
                             )
                         })}
@@ -60,6 +61,7 @@ export default function AppDetailedContent(props) {
                                 <StickyNote color={item.color}
                                             note={item.noteContent}
                                             pageNumber={item.pageNumber}
+                                            noteId={item.id}
                                 />
                             )
                         })}
