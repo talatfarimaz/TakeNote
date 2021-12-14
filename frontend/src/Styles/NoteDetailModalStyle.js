@@ -36,7 +36,9 @@ const NoteDetailModalStyle = makeStyles(theme => ({
         textAlign: "right",
     },
     textAreaStyle: {
-        width: "100%"
+        width: "100%",
+        textAlign: "center",
+        marginBottom: "10px"
     },
     cancelButton: {
         textAlign: "right"
@@ -53,6 +55,11 @@ const NoteDetailModalStyle = makeStyles(theme => ({
     },
     paperFullWidthMargin: {
         margin: "unset"
+    },
+    bookDetail: {
+        textAlign: "center",
+        fontWeight: "bold",
+        margin: "10px"
     }
 }))
 

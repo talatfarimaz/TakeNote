@@ -7,7 +7,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {useTranslation} from "react-i18next";
-import {ClickAwayListener, Divider, Grid, InputBase, TextField, Tooltip} from "@material-ui/core";
+import {Chip, ClickAwayListener, Divider, Grid, InputBase, TextField, Tooltip} from "@material-ui/core";
 import axios from "axios";
 import NoteDetailModalStyle from "../Styles/NoteDetailModalStyle";
 import GpsFixedSharpIcon from "@material-ui/icons/GpsFixedSharp";
@@ -94,6 +94,16 @@ export const NoteDetailModal = forwardRef((props, ref) => {
             console.log(error);
         });
     }
+    const handleGetNoteCategories = () => {
+        if (noteOtherDetail !== null) {
+            return(
+                noteOtherDetail.categoryDTOList.map((category) => {
+                    return(<Chip color={"secondary"} label={category.categoryName}/> )
+                })
+            )
+
+        }
+    }
     const handleGetDetailedNoteArea = () => {
         if (openDetail) {
             return (
@@ -117,18 +127,21 @@ export const NoteDetailModal = forwardRef((props, ref) => {
                             </Tooltip>
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
+                            <Typography
                                 className={classes.textAreaStyle}
                                 placeholder={t('TakeNote')}
                                 inputProps={{'aria-label': t('TakeNote')}}
                                 onSelect={() => {
                                     handleOnChangeTakeNote()
                                 }}
-                                value={noteDetail}
-                                multiline
-                                maxRows={50}
-                                InputProps={{readOnly: true}}
-                            /> </Grid>
+                            >
+                                {noteDetail}
+                            </Typography>
+                            <Divider variant={"fullWidth"}/>
+                            <Typography className={classes.bookDetail}>{noteOtherDetail && (noteOtherDetail.bookDTO.bookName+" - "+pageNumber)}</Typography>
+                            {handleGetNoteCategories()}
+
+                        </Grid>
                         <Grid item xs={12}>
                             <Grid container spacing={1}>
                                 <Grid item xs={1} className={classes.iconButtons}>
