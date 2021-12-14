@@ -25,6 +25,7 @@ import DefaultTheme from "../Themes/DefaultTheme";
 import {ColorSelectorModal} from "./ColorSelectorModal";
 import DialogTitle from "./DialogTitle";
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 
 const DialogContent = withStyles((theme) => ({
@@ -99,7 +100,7 @@ export const NoteDetailModal = forwardRef((props, ref) => {
         if (noteOtherDetail !== null) {
             return(
                 noteOtherDetail.categoryDTOList.map((category) => {
-                    return(<Chip icon={<MenuBookIcon/>} color={"secondary"} label={category.categoryName}/> )
+                    return(<Chip className={classes.chipStyle} icon={<AttachFileIcon/>} color={"secondary"} label={category.categoryName}/> )
                 })
             )
 

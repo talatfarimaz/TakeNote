@@ -35,7 +35,7 @@ public class Note {
     @OneToOne(mappedBy = "noteBook")
     private NoteMapBook noteMapBook;
 
-    @OneToOne(mappedBy = "noteCategory")
+    @ManyToOne
     private NoteMapCategory noteMapCategory;
 
 

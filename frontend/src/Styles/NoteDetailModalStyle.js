@@ -60,6 +60,9 @@ const NoteDetailModalStyle = makeStyles(theme => ({
         textAlign: "center",
         fontWeight: "bold",
         margin: "10px"
+    },
+    chipStyle: {
+        margin: "3px"
     }
 }))
 

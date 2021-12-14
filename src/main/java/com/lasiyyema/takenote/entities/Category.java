@@ -28,7 +28,7 @@ public class Category {
 
     @OneToMany(mappedBy = "category",
             orphanRemoval = true)
-    private List<Category> comments = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     public Category() {
     }
