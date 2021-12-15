@@ -144,6 +144,7 @@ export const NoteDetailModal = forwardRef((props, ref) => {
                             {handleGetNoteCategories()}
 
                         </Grid>
+{/*
                         <Grid item xs={12}>
                             <Grid container spacing={1}>
                                 <Grid item xs={1} className={classes.iconButtons}>
@@ -273,6 +274,7 @@ export const NoteDetailModal = forwardRef((props, ref) => {
 
                             </Grid>
                         </Grid>
+*/}
                     </Grid>
                 </ClickAwayListener>
             )
@@ -316,14 +318,14 @@ export const NoteDetailModal = forwardRef((props, ref) => {
                 {handleGetDetailedNoteArea()}
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={handleSaveBook} color="primary" variant={"contained"}>
+            {/*    <Button autoFocus onClick={handleSaveBook} color="primary" variant={"contained"}>
                     <Typography>
                         {t('Save')}
                     </Typography>
-                </Button>
+                </Button>*/}
                 <Button autoFocus onClick={handleClose} color="primary" variant={"contained"}>
                     <Typography>
-                        {t('Cancel')}
+                        {t('Close')}
                     </Typography>
                 </Button>
             </DialogActions>

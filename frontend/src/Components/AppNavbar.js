@@ -35,7 +35,7 @@ function AppNavbar(props) {
     const [activeLanguage, setActiveLanguage] = React.useState(i18n.language);
     const [listIcon, setListIcon] = React.useState(true);
     const [refreshData, setRefreshData] = React.useState(false);
-
+    const dispatch = useDispatch();
     const changeLanguageSelection = (lng) => {
         i18n.changeLanguage(lng);
         setActiveLanguage(lng);
@@ -150,7 +150,6 @@ function AppNavbar(props) {
     );
 
     const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
-    const dispatch = useDispatch();
 
     return (
         <div className={classes.grow}>

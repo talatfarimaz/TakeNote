@@ -13,9 +13,8 @@ class Home extends Component {
         this.state = {
             refreshData: false
         }
-        this.handleRefreshData = this.handleRefreshData.bind(this);
     }
-    handleRefreshData (refresh) {
+    handleRefreshData = (refresh) => {
         this.setState({refreshData: refresh})
     }
     render() {
