@@ -24,6 +24,7 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SyncIcon from '@material-ui/icons/Sync';
 import ViewStreamIcon from '@material-ui/icons/ViewStream';
+import axios from "axios";
 
 
 function AppNavbar(props) {
@@ -35,7 +36,7 @@ function AppNavbar(props) {
     const [activeLanguage, setActiveLanguage] = React.useState(i18n.language);
     const [listIcon, setListIcon] = React.useState(true);
     const [refreshData, setRefreshData] = React.useState(false);
-
+    const dispatch = useDispatch();
     const changeLanguageSelection = (lng) => {
         i18n.changeLanguage(lng);
         setActiveLanguage(lng);
@@ -150,7 +151,6 @@ function AppNavbar(props) {
     );
 
     const leftMenuOpenState = useSelector(state => state.app.leftMenuOpenState);
-    const dispatch = useDispatch();
 
     return (
         <div className={classes.grow}>
@@ -201,14 +201,7 @@ function AppNavbar(props) {
                     </div>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton color="inherit" onClick={()=>{
-                           /* dispatch({
-                                type: "NOTES_REFRESH",
-                                payload: true
-                            });*/
-                            setRefreshData(true);
-                            props.owner.handleRefreshData(refreshData)
-                        }}>
+                        <IconButton color="inherit" >
                             <SyncIcon color="action" fontSize={"large"}/>
                         </IconButton>
                         <IconButton color="inherit">

@@ -11,18 +11,13 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            refreshData: false
         }
-        this.handleRefreshData = this.handleRefreshData.bind(this);
-    }
-    handleRefreshData (refresh) {
-        this.setState({refreshData: refresh})
     }
     render() {
         return (
             <div>
-                <AppNavbar owner={this}/>
-                <AppContent refreshData={this.state.refreshData}/>
+                <AppNavbar/>
+                <AppContent/>
             </div>
         );
     }

@@ -42,12 +42,12 @@ export default function TakeNoteArea(props) {
     const [color, setColor] = React.useState(DefaultTheme.palette.success.contrastText);
     const [category, setCategory] = React.useState([]);
     const [book, setBook] = React.useState(null);
-    const [bookList, setBookList] = React.useState([]);
     const [pageNumber, setPageNumber] = React.useState(null);
     const childRefNote = useRef();
     const duration = 1000;
     const [note, setNote] = React.useState(null);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [bookList, setBookList] = React.useState([]);
     useEffect(() => {
         axios.get('/books/getBookList').then(function (response) {
             setBookList(response.data);
@@ -110,6 +110,7 @@ export default function TakeNoteArea(props) {
                         axios.post('notes/addNote',
                             handleGetJsonData(categoryIdList)
                         ).then(function (response) {
+                            props.handleGetAllSavedNote();
                             childRefNote.current.handleClickOpenWithRef(duration, t('SuccessMessage'), NotificationTypes.success);
                             setTimeout(function () {
                                 handleClose();

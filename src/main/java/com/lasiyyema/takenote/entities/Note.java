@@ -18,7 +18,7 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NoteContent", length = 2000, nullable = false)
+    @Column(name = "NoteContent", length = 4000, nullable = false)
     private String noteContent;
 
     @CreationTimestamp

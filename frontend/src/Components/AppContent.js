@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import LeftMenu from "./LeftMenu";
 import AppContentStyle from "../Styles/AppContentStyle";
 import AppDetailedContent from "./AppDetailedContent";
@@ -8,7 +8,7 @@ export default function AppContent(props) {
     return (
         <div className={classes.root}>
             <LeftMenu/>
-            <AppDetailedContent refreshData={props.refreshData}/>
+            <AppDetailedContent/>
         </div>
     );
 }

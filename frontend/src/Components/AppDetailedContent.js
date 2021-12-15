@@ -6,7 +6,6 @@ import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import {Grid} from "@material-ui/core";
 import StickyNote from "./StickyNote";
 import TakeNoteArea from "./TakeNoteArea";
-import DefaultTheme from "../Themes/DefaultTheme";
 import axios from "axios";
 
 export default function AppDetailedContent(props) {
@@ -15,23 +14,16 @@ export default function AppDetailedContent(props) {
     const notesListPreview = useSelector(state => state.app.notesListPreview);
     const [savedNoteList, setSavedNoteList] = React.useState([]);
     useEffect(() => {
+        handleGetAllSavedNote()
+    }, [])
+
+    const handleGetAllSavedNote = () => {
         axios.get('/notes/getSavedNoteList').then(function (response) {
             setSavedNoteList(response.data);
         }).catch(function (error) {
             console.log(error)
         });
-    }, [])
-
-    useEffect(() => {
-        if (props.refreshData ) {
-            axios.get('/notes/getSavedNoteList').then(function (response) {
-                setSavedNoteList(response.data);
-            }).catch(function (error) {
-                console.log(error)
-            });        }
-    }, [props.refreshData]);
-
-
+    }
     const handleNotesPreview = () => {
         if (notesListPreview && savedNoteList.length !== 0) {
             return (
@@ -39,12 +31,12 @@ export default function AppDetailedContent(props) {
                     columnsCountBreakPoints={{250: 1, 500: 2, 750: 3, 1000: 4, 1250: 5, 1500: 6, 1750: 7}}
                 >
                     <Masonry>
-                        {savedNoteList.map((item) => {
+                        {savedNoteList.map((note) => {
                             return (
-                                <StickyNote color={item.color}
-                                            note={item.noteContent}
-                                            pageNumber={item.pageNumber}
-                                            noteId={item.id}
+                                <StickyNote color={note.color}
+                                            note={note.noteContent}
+                                            pageNumber={note.pageNumber}
+                                            noteId={note.id}
                                 />
                             )
                         })}
@@ -79,7 +71,7 @@ export default function AppDetailedContent(props) {
                 [classes.mainBlur]: leftMenuOpenState
             })}
         >
-            <TakeNoteArea/>
+            <TakeNoteArea handleGetAllSavedNote={handleGetAllSavedNote}/>
             {handleNotesPreview()}
         </main>
     );
