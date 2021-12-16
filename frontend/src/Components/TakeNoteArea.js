@@ -197,7 +197,7 @@ export default function TakeNoteArea(props) {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={4} className={classes.selectArea}>
+                            <Grid item sm={4} xs={12} className={classes.selectArea}>
                                 <Autocomplete
                                     options={bookList}
                                     getOptionLabel={(option) => option.bookName}
@@ -208,7 +208,7 @@ export default function TakeNoteArea(props) {
                                         <TextField {...params} label={t('SelectBook')} variant={"standard"}/>}
                                 />
                             </Grid>
-                            <Grid item xs={4} className={classes.selectArea}>
+                            <Grid item sm={4} xs={12} className={classes.selectArea}>
                                 <Autocomplete
                                     multiple
                                     id="tags-standard"
@@ -220,7 +220,7 @@ export default function TakeNoteArea(props) {
                                                                         variant={"standard"}/>}
                                 />
                             </Grid>
-                            <Grid item xs={4} className={classes.selectArea}>
+                            <Grid item sm={4} xs={12} className={classes.selectArea}>
                                 <TextField
                                     className={classes.pageNumberStyle}
                                     placeholder={t('EnterPage')}
@@ -232,9 +232,9 @@ export default function TakeNoteArea(props) {
                                     type="number"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className={classes.iconsArea}>
                                 <Grid container spacing={1}>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2} className={classes.iconButtons}>
                                         <Tooltip title={t('Reminder')}>
                                             <IconButton
                                                 color="inherit"
@@ -249,7 +249,7 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2} className={classes.iconButtons}>
                                         <Tooltip title={t('ArchiveNote')}>
                                             <IconButton
                                                 color="inherit"
@@ -264,7 +264,7 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2} className={classes.iconButtons}>
                                         <Tooltip title={t('AddImage')}>
                                             <IconButton
                                                 color="inherit"
@@ -279,7 +279,7 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2} className={classes.iconButtons}>
                                         <Tooltip title={t('ColorSelect')}>
                                             <IconButton
                                                 color="inherit"
@@ -311,7 +311,7 @@ export default function TakeNoteArea(props) {
                                             </Grid>
                                         </Popover>
                                     </Grid>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2} className={classes.iconButtons}>
                                         <Tooltip title={t('CommonPerson')}>
                                             <IconButton
                                                 color="inherit"
@@ -326,7 +326,7 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2}className={classes.iconButtons}>
                                         <Tooltip title={t('Options')}>
                                             <IconButton
                                                 color="inherit"
@@ -341,7 +341,7 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2} className={classes.iconButtons}>
                                         <Tooltip title={t('Options')}>
                                             <IconButton
                                                 color="inherit"
@@ -357,7 +357,7 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={1} className={classes.iconButtons}>
+                                    <Grid item sm={1} xs={2}className={classes.iconButtons}>
                                         <Tooltip title={t('Options')}>
                                             <IconButton
                                                 color="inherit"
@@ -373,14 +373,14 @@ export default function TakeNoteArea(props) {
                                             </IconButton>
                                         </Tooltip>
                                     </Grid>
-                                    <Grid item xs={2} className={classes.cancelButton}>
+                                    <Grid item sm={2} xs={4} className={classes.cancelButton}>
                                         <Button onClick={handleSaveNote}>
                                             <Typography className={classes.cancelButtonText}>
                                                 {t('Save')}
                                             </Typography>
                                         </Button>
                                     </Grid>
-                                    <Grid item xs={2} className={classes.cancelButton}>
+                                    <Grid item sm={2} xs={4} className={classes.cancelButton}>
                                         <Button onClick={() => {
                                             setOpenDetail(false)
                                         }}>
@@ -425,12 +425,18 @@ export default function TakeNoteArea(props) {
         }
     }
     return (
-        <Grid container>
-            <Grid item lg={4} md={3} sm={2} xs={0}/>
-            <Grid item lg={4} md={6} sm={8} xs={12}>
+        <Grid container spacing={2}>
+            <Grid item xl={2} lg={1} className={classes.emptyGrid}/>
+            <Grid item xl={2} lg={3} md={3} sm={6} xs={12} className={classes.leftRightButtons1}>
+                <Button fullWidth={true} color={"secondary"} variant={"contained"}>Deneme</Button>
+            </Grid>
+            <Grid item xl={4} lg={4} md={6} sm={12} xs={12} className={classes.mainGrid}>
                 {handleGetDetailedNoteArea()}
             </Grid>
-            <Grid item lg={4} md={3} sm={2} xs={0}/>
+            <Grid item xl={2} lg={3} md={3} sm={6} xs={12} className={classes.leftRightButtons2}>
+                <Button fullWidth={true} color={"primary"} variant={"contained"}>Deneme</Button>
+            </Grid>
+            <Grid item xl={2} lg={1} className={classes.emptyGrid}/>
             <ColorSelectorModal ref={childRef} setColor={setColor}/>
             <Notification ref={childRefNote} duration={duration}/>
         </Grid>

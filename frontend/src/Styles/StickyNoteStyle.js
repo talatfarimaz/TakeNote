@@ -26,7 +26,8 @@ const StickyNoteStyle = makeStyles(theme => ({
         padding: "5px"
     },
     noteStyle: {
-        fontSize: "14px"
+        fontSize: "14px",
+        fontWeight: "bold"
     },
     pinButton: {
         textAlign: "right",

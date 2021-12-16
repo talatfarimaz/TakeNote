@@ -57,7 +57,13 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
         paddingLeft: "20px",
         paddingRight: "20px",
         marginTop: "20px",
-        marginBottom: "40px"
+        marginBottom: "40px",
+        [theme.breakpoints.only('xs')]: {
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            marginTop: "20px",
+            marginBottom: "unset"
+        }
     },
     pageNumberStyle: {
         marginTop: "16px"
@@ -71,7 +77,36 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
         fontSize: "30px"
     },
     popoverGrid: {
-        width: "250px"
+        width: "320px"
+    },
+    iconsArea : {
+        [theme.breakpoints.only('xs')]: {
+            marginTop: "20px"
+        }
+    },
+    leftRightButtons1: {
+        textAlign: "center",
+        margin: "auto",
+        [theme.breakpoints.down('sm')]: {
+            order: 2
+        }
+    },
+    leftRightButtons2: {
+        textAlign: "center",
+        margin: "auto",
+        [theme.breakpoints.down('sm')]: {
+            order: 3
+        }
+    },
+    emptyGrid: {
+        [theme.breakpoints.down('md')]: {
+            display: "none"
+        }
+    },
+    mainGrid: {
+        [theme.breakpoints.down('sm')]: {
+            order: 1
+        }
     }
 }))
 
