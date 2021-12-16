@@ -57,7 +57,13 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
         paddingLeft: "20px",
         paddingRight: "20px",
         marginTop: "20px",
-        marginBottom: "40px"
+        marginBottom: "40px",
+        [theme.breakpoints.only('xs')]: {
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            marginTop: "20px",
+            marginBottom: "unset"
+        }
     },
     pageNumberStyle: {
         marginTop: "16px"
@@ -72,6 +78,11 @@ const TakeNoteAreaStyle = makeStyles(theme => ({
     },
     popoverGrid: {
         width: "250px"
+    },
+    iconsArea : {
+        [theme.breakpoints.only('xs')]: {
+            marginTop: "20px"
+        }
     }
 }))
 

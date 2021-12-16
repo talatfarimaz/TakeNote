@@ -8,6 +8,7 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import DefaultTheme from "./Themes/DefaultTheme";
 import {Provider} from "react-redux";
 import store from "./state/store";
+import ScrollButton from "./Components/ScrollButton";
 
 class App extends Component {
     render() {

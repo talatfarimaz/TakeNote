@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
-import {Container } from 'reactstrap';
 import AppNavbar from "./Components/AppNavbar";
-import {Button, Grid} from "@material-ui/core";
-import LeftMenu from "./Components/LeftMenu";
 import AppContent from "./Components/AppContent";
+import ScrollButton from "./Components/ScrollButton";
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        }
+        this.state = {}
     }
+
     render() {
         return (
             <div>
                 <AppNavbar/>
                 <AppContent/>
+                <ScrollButton/>
             </div>
         );
     }
