@@ -25,8 +25,8 @@ const ScrollButton = () => {
     window.addEventListener('scroll', toggleVisible);
 
     return (
-        <Fab className={classes.fabStyle} size={"large"} style={{display: visible ? 'flex' : 'none'}}>
-            <EjectIcon color={"primary"} onClick={scrollToTop} fontSize={"large"} />
+        <Fab className={classes.fabStyle} onClick={scrollToTop} color={"primary"} size={"large"} style={{display: visible ? 'flex' : 'none'}}>
+            <EjectIcon fontSize={"large"} />
         </Fab>
     );
 }

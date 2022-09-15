@@ -39,9 +39,9 @@ export default function TakeNoteArea(props) {
     const [openDetail, setOpenDetail] = React.useState(false);
     const [redo, setRedo] = React.useState(true);
     const [undo, setUndo] = React.useState(true);
-    const [color, setColor] = React.useState(DefaultTheme.palette.success.contrastText);
+    const [color, setColor] = React.useState(DefaultTheme.palette.secondary.mainAlternative);
     const [category, setCategory] = React.useState([]);
-    const [book, setBook] = React.useState(null);
+    const [book, setBook] = React.useState(2);
     const [pageNumber, setPageNumber] = React.useState(null);
     const childRefNote = useRef();
     const duration = 1000;
@@ -84,15 +84,15 @@ export default function TakeNoteArea(props) {
     }
     const handleClose = () => {
         setNote(null);
-        setBook(null);
+        setBook(2);
         setCategory([]);
-        setColor(null);
+        setColor(DefaultTheme.palette.secondary.mainAlternative);
         setPageNumber(null);
     };
     const handleGetJsonData = (categoryIdList) =>{
         return {
             "noteContent": note,
-            "noteMapBook": book.id,
+            "noteMapBook": 2,
             "noteMapCategory": categoryIdList,
             "color": color,
             "pageNumber": pageNumber
